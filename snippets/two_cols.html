@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Two-Column Layout</title>
+    <style>
+      /* Set the width of the left column to 80% and the right column to 20% */
+      .left-column {
+        width: 80%;
+        float: left;
+      }
+      .right-column {
+        width: 20%;
+        float: right;
+      }
+      /* Center the content of the left column */
+      .centered {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="left-column">
+      <div class="centered">
+        <h1>Centered Content</h1>
+        <p>This content is centered in the left column.</p>
+      </div>
+    </div>
+    <div class="right-column">
+      <div style="width: 100%;">
+        <h1>Full-Width Content</h1>
+        <p>This content takes up the full width of the right column.</p>
+      </div>
+    </div>
+  </body>
+</html>
