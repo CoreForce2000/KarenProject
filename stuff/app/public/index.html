@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+	<!-- TOPBAR (SHARED) -->
+
+    <div class="topbar">
+        <img class="button" id="back-arrow-button" onclick="goToIndex()" src="assets/arrow_white.png"></img>
+        
+    </div>
+    
+    <div id="timer"></div>
+
+
+    <div id="content">
+	    
+        <!-- PAGES -->
+        
+        <div class="page" id="category-page">
+            <table id="category-table"></table>
+        </div>
+
+        <div class="page" id="item-page">
+            <table id="item-table"></table>
+        </div>
+
+        <div class="sidebar" id="checkout-sidebar">
+            <div id="total-price-text"><span id="total-price">0</span></div>
+            <table id="checkout-table"></table>
+        </div>
+
+
+
+        <!-- ITEM TEMPLATES -->
+
+        <div id="popup" class="popup" onclick="hideImage()">
+            <div id="item-price-row"> <img id="popup-image" alt="Product Image"> </div>
+            <div id="popup-below-image">
+                <button class="button" id="purchase-button" id="purchase-button" onclick="addToCart()">Add to Basket</button>
+                <button class="button" id="back-button" onclick="hideImage()" style="display:none">Back</button>
+                <div id="price-div">
+                    <p id="item-price">£40</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="cart-item">
+            <img src="" alt="Item Image" id="cart-item-image">
+            <p id="cart-item-price"></p>
+            <button class="button" id="remove-button">Remove</button>
+        </div>
+
+
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
