@@ -274,16 +274,46 @@ box_style =  ""
 
 
 
-
 window.onload = function() {
+    
     goToIndex()
     fillCategoryTable()
-}
+
+    var tenMinutes = 60 * 10,
+    display = document.getElementById('timer');
+    startTimer(tenMinutes, display);
+};
 
 if(sessionStorage.getItem("counter") === null) {
     sessionStorage.setItem("counter", 500);
   }
 
+  function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    var timeBar = document.getElementById('timer-bar');
+    var width = 100;
+  
+    var interval = setInterval(function () {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
+  
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+  
+      display.textContent = minutes + ":" + seconds;
+  
+      if (--timer < 0) {
+        clearInterval(interval);
+        display.textContent = "Time's up!";
+      }
+
+      console.log(duration);
+  
+      width -= 100 / duration;
+      timeBar.style.width = width + '%';
+    }, 1000);
+  }
+  
 // Navigate 
 
 function goToCategory(categoryName, color) {
@@ -291,7 +321,7 @@ function goToCategory(categoryName, color) {
     document.getElementById('item-page').style.display='flex'
     document.getElementById('category-page').style.display='none'
 
-    document.getElementById('back-button').style.visibility='visible'  
+    document.getElementById('back-arrow-button').style.visibility='visible'  
 }
 
 function goToIndex() {
@@ -299,20 +329,11 @@ function goToIndex() {
     document.getElementById('category-page').style.display='flex'
     document.getElementById('item-page').style.display='none'
  
-    document.getElementById('back-button').style.visibility='hidden'   
-}
-
-function goToCheckout() {
-    hideImage()
-    document.getElementById('category-page').style.display='none'
-    document.getElementById('item-page').style.display='none'
-  
-    document.getElementById('back-button').style.visibility='visible'  
+    document.getElementById('back-arrow-button').style.visibility='hidden'   
 }
 
 
 // Fill tables
-
 
 function fillCategoryTable() {
     
@@ -350,12 +371,13 @@ function fillItemTable(categoryName, color) {
     var path = `images_chosen/${categoryName}/`
     // var path = "assets/images"
 
+    
+
     const table = document.querySelector('#item-table'); // select the table element
 
     var stripe = document.getElementById('item-page')
     
-    stripe.style.border.top = `solid 10px ${color}`
-    console.log(color)
+    stripe.style.backgroundColor = `linear-gradient(to bottom right, ${color}, #000000);`
 
 
     while (table.firstChild) {
@@ -368,56 +390,80 @@ function fillItemTable(categoryName, color) {
     var tableBody = document.querySelector("#item-table");
 
     // Loop through the lists and add rows to the table
-    for (var f,i = 0; i < 2; f++, i++) {
+    for (var f,i = 0; i < 7; f++, i++) {
         var row = tableBody.insertRow();
 
         for (var g = 0; g < 3; g++) {
-            var img = path + itemImage[g%(itemImage.length-1)]
-            var price = itemPrice[g%(itemImage.length-1)]
+
+            var img = path + itemImage[g % (itemImage.length - 1)];
+            var price = itemPrice[g % (itemImage.length - 1)];
 
             var itemCell = row.insertCell();
-            // itemCell.textContent = "+"//"⚪"
-            itemCell.className = "item-box"
-            itemCell.style = box_style  + `background-color:${color};` + "font-size:30px"//+ `font-color:${color};`
-            itemCell.onclick = function(img_arg, price_arg) {
-                return ()=> showItem(img_arg, price_arg)
-            }(img, price)
+            itemCell.className = "item-box";
+            
+            // itemCell.style = box_style + `background-color:${color};` + "font-size:30px;";
+            itemCell.style = box_style + `background-color:white;` + "font-size:30px;";
+
+            itemCell.onclick = function (img_arg, price_arg) {
+            return () => showItem(img_arg, price_arg);
+            }(img, price);
+
+            var imageElement = document.createElement("img");
+            imageElement.src = img;
+            imageElement.style.width = "60%";
+            imageElement.style.height = "60%";
+            imageElement.style.display = "block";
+            imageElement.style.margin = "auto";
+            imageElement.style.filter = "blur(3px)";
+
+            itemCell.appendChild(imageElement);
         }
     }
+
+    tableBody.style.overflow = "auto";
+    
+
+
 }
 
 
 // Show / Hide Item
 
 function showItem(imageSrc, priceVal) {
+
     var popup = document.querySelector('.popup');
     var popupImage = document.querySelector('#popup-image');
     var price = document.querySelector('#item-price');
-    var purchaseButton = document.querySelector('#purchase-button')
+    var purchaseButton = document.querySelector('#purchase-button');
+    var overlay = document.querySelector('.overlay');
 
     popupImage.src = imageSrc;
     price.innerHTML = priceVal;
-    
+
     popup.style.display = 'block';
+    overlay.style.display = 'block';
 
     purchaseButton.onclick = function(img_arg, price_arg) {
-        return ()=> purchase(img_arg, price_arg)
-    }(imageSrc, priceVal)
-}
+    return () => purchase(img_arg, price_arg);
+    }(imageSrc, priceVal);
 
+    overlay.onclick = function() {
+        hideImage()
+        };
+}
 
 function hideImage() {
     var popup = document.querySelector('.popup');
+    var overlay = document.querySelector('.overlay');
+
     popup.style.display = 'none';
+    overlay.style.display = 'none';
 }
-
-
 
 
 
 
 // Purchase Item
-
 
 function purchase(imageSrc, priceVal) {
 
@@ -453,10 +499,16 @@ function addItemToCart(imageSrc, priceVal) {
     var id = `item_${i}`;
 
     var newItem = document.createElement("div");
-    newItem.setAttribute("id", id);
-    newItem.style = box_style;
+    cell.setAttribute("id", id);
+    newItem.style.display = "flex"; // Set display property to flex
+    newItem.style.justifyContent = "space-between"; // Space items evenly along the horizontal axis
+    newItem.style.alignItems = "center"; // Align items vertically in the center
+    newItem.style.padding = "10px";
+    newItem.style.backgroundColor = "azure";
     newItem.appendChild(cartItemImage);
     newItem.appendChild(cartItemPrice);
+    newItem.appendChild(cartButton);
+
 
     cartButton.onclick = function(cartItem, price, id) {
         return () => removeItemFromCart(cartItem, price, id);
@@ -495,6 +547,5 @@ function getStyle(oElm, strCssRule){
     return strValue;
 }
 
-
-
+    
 

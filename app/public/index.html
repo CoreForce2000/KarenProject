@@ -7,12 +7,18 @@
 
 	<!-- TOPBAR (SHARED) -->
 
+    
+    <div class="overlay"></div>
+
     <div class="topbar">
         <img class="button" id="back-arrow-button" onclick="goToIndex()" src="assets/arrow_white.png"></img>
         
+        <div id="timer">10:00</div>
+        <img class="button" id="shopping-cart-button" onclick="goToIndex()" src="assets/cart_white.png"></img>
+        
     </div>
     
-    <div id="timer"></div>
+    <div id="timer-bar"></div>
 
     <div id="content">
 	    
@@ -27,7 +33,7 @@
         </div>
 
         <div class="sidebar" id="checkout-sidebar">
-            <div id="total-price-text"><span id="total-price">0</span></div>
+            <div id="total-price-text">Total price: <span id="total-price">0</span> £</div>
             <table id="checkout-table"></table>
         </div>
 
@@ -35,7 +41,7 @@
 
         <!-- ITEM TEMPLATES -->
 
-        <div id="popup" class="popup" onclick="hideImage()">
+        <div id="popup" class="popup">
             <div id="item-price-row"> <img id="popup-image" alt="Product Image"> </div>
             <div id="popup-below-image">
                 <button class="button" id="purchase-button" id="purchase-button" onclick="addToCart()">Add to Basket</button>
