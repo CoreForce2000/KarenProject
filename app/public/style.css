@@ -26,24 +26,67 @@ table {
     background-color: var(--blue);
 }
 
-
 .overlay {
+    z-index: 910;
     display: none;
-    position: fixed;
+    position:absolute;
+    top:0;
+    left:0;
+    height: 100%;
+    width:100%;
+    background-color:#0B0C0C77;
+}
+
+
+
+  #cover-slide {
+    display: block;
+  }
+  
+  .slide {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 998;
+    display: none;
+    z-index: 900;
   }
 
+  .slide-input {
+    position: absolute;
+    top: 50%;
+    z-index: 900;
+  }
+
+  #text-input {
+    display: none;
+    font-size: 30px;
+    left: 40%;
+    width: 20%;
+    background-color: white;
+  }
+
+  #range-slider {
+    display: none;
+    left: 10%;
+    width: 80%;
+  }
+
+  #next-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 900;
+}
 
 
 /* Body */
 
 body {
     font-family: Arial, sans-serif;
+    overflow:hidden;
     padding:0px;
     margin:0px;
 }
@@ -62,10 +105,25 @@ body {
             visibility: hidden;
         }
 
-        #shopping-cart-button {
-            width: 30px;
-            height: 30px;
+        #price-and-cart-div {
+            display: flex;
         }
+
+            #total-price-text {
+                display: flex;
+                font-size: 30px;
+                color:white;
+                padding:8px;
+                justify-content: center;
+            }
+
+            #shopping-cart-button {
+                width: 30px;
+                height: 30px;
+            }
+        
+
+
 
         
 
@@ -79,10 +137,9 @@ body {
 
         /* Page */
         .page {
-            width:80%;
-            float:left;
-            /* display: flex; */
-            /* justify-content: left; */
+            width:100%;
+            display: flex;
+            justify-content: center;
             height:88vh;
             overflow:auto;
         }
@@ -99,41 +156,33 @@ body {
                 opacity: 0.9;
             }
 
-        /* Sidebar */
-        .sidebar {
-            width: 19%;
-            float:right;
-            padding:10px;
-            height: 88vh;
-            overflow:auto;
-            overflow-x:hidden;
-            background-color: var(--lightgrey);
-        }
-            #total-price-text {
-                font-size: 35px;
-                width:100%;
-                color:black;
-                text-align: center;
-                padding:10px;
-                border-bottom: 1px solid lightgray;
+            #checkout-page {
+                display: inline-block;
+                vertical-align: top;
             }
-            #cart-item {
-                display: none;
-            }
-                #cart-item-image {
-                    width: 100px;
-                    height: 100px;
+
+                #checkout-table {
+                    width: 50%;
                 }
-                #cart-item-price {
-                    font-size: 40px;
-                    font-weight: bold;
-                    margin: 20px;
-                }
-                #remove-button {
-                    background-color: var(--blue);
-                    color: white;
-                }
-            
+
+                    #cart-item {
+                        display: none;
+                        width: 50%;
+                    }
+                        #cart-item-image {
+                            width: 100px;
+                            height: 100px;
+                        }
+                        #cart-item-price {
+                            font-size: 40px;
+                            font-weight: bold;
+                            margin: 20px;
+                        }
+                        #remove-button {
+                            background-color: var(--blue);
+                            color: white;
+                        }
+                
         
         
         
@@ -215,7 +264,7 @@ body {
     background-color: white;
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    z-index: 920;
     display: flex;
     justify-content: center;
 }

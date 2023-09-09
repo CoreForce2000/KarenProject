@@ -7,16 +7,31 @@
 
 	<!-- TOPBAR (SHARED) -->
 
-    
-    <div class="overlay"></div>
+    <div id="slideshow">
+        <img src="assets/slides/phase1/Slide1.png" class="slide">
+        <img src="assets/slides/phase1/Slide2.png" class="slide">
+        <img src="assets/slides/phase1/Slide3.png" class="slide">
+        <img src="assets/slides/phase1/Slide4.PNG" class="slide">
+        <img id="next-button" src="assets/buttonNext.PNG" onclick="nextSlide()">
+        
+        <input class="slide-input" type="text" id="text-input" placeholder="Enter name">
+        <input class="slide-input" type="range" min="0" max="100" value="50" id="range-slider">
+        <div id="debug" style="position:absolute; bottom:0; left:0;"> empty </div>
+    </div>
+
+    <img id="cover-slide" src="assets/slides/Cover.png" class="slide">
 
     <div class="topbar">
         <img class="button" id="back-arrow-button" onclick="goToIndex()" src="assets/arrow_white.png"></img>
         
         <div id="timer">10:00</div>
-        <img class="button" id="shopping-cart-button" onclick="goToIndex()" src="assets/cart_white.png"></img>
         
+        <div id="price-and-cart-div">
+            <div id="total-price-text"> <span id="total-price">1000</span> £</div>
+            <img class="button" id="shopping-cart-button" onclick="goToCheckout()" src="assets/cart_white.png"></img>    
+        </div>
     </div>
+
     
     <div id="timer-bar"></div>
 
@@ -32,12 +47,9 @@
             <table id="item-table"></table>
         </div>
 
-        <div class="sidebar" id="checkout-sidebar">
-            <div id="total-price-text">Total price: <span id="total-price">0</span> £</div>
-            <table id="checkout-table"></table>
+        <div class="page" id="checkout-page">
+            <table id="checkout-table"><tr style="height:88vh"></tr></table>
         </div>
-
-
 
         <!-- ITEM TEMPLATES -->
 
@@ -59,6 +71,9 @@
         </div>
 
     </div>
+
+    <div class="overlay"></div>
+
     <script src="script.js"></script>
 </body>
 </html>

@@ -212,10 +212,7 @@ const categoryItemDict = {
  "Crafts": [],
  "Food": [],
  "Garden": [],
- "Movies": [],
- "Musical Instruments": [],
- "Software": [],
- "Tools": []
+ "Musical Instruments": []
  
 
 
@@ -268,21 +265,109 @@ box_style =  ""
                 // +"opacity:0.3;"
                 // +"border-radius: 20px;"
                 +"margin: 10px;"
-                // +"widht:50px"
+                +"width: 10vw;"
+                +"height: 10vw;"
+                +"font-size: 1.5vw;"
                 +"background-color:"+govColors.lightgrey+";"
+  
 
-
-
-
-window.onload = function() {
     
+window.onload = function() {
+    switchToSlides()
+
     goToIndex()
     fillCategoryTable()
 
+    init_event_logger()
+};
+
+
+function init_event_logger() {
+    var allElements = document.getElementsByTagName('*');
+    for (var i = 0; i < allElements.length; i++) {
+        allElements[i].addEventListener('click', logElementInteraction);
+    }
+}
+
+behavior_log = [];
+last_interaction = "0"
+function logElementInteraction(event) {
+    var timestamp = new Date().toLocaleString();
+    var element = event.target;
+
+    if (timestamp != last_interaction) {
+
+        logEntry = timestamp + ' - Element Interacted: ' + element.id;
+        behavior_log.push(logEntry);
+        console.log(logEntry);
+        last_interaction = timestamp
+    }
+    }
+
+// Navigate 
+
+function switchToSlides() {
+    document.getElementById('slideshow').style.display='flex'
+}
+
+var currentSlide = 0;
+var slides = document.querySelectorAll('.slide');
+var nextButton = document.getElementById('next-button');
+
+
+document.addEventListener("keydown", function(event) {
+    if (event.keyCode === 32) { // 32 is the key code for spacebar
+        var image = document.getElementById("cover-slide");
+        image.parentNode.removeChild(image);
+        nextSlide()
+    }})
+   
+
+function showSlide(n) {
+  slides[currentSlide].style.display = 'none';
+  currentSlide = (n + slides.length) % slides.length;
+  slides[currentSlide].style.display = 'block';
+}
+
+
+data = {}
+
+function showInput(inputID) {
+    document.getElementById(inputID).style.display = "block"
+}
+function saveAndHideInput(inputID, varName) {
+    data[varName] = document.getElementById(inputID).value;
+    document.getElementById(inputID).style.display = "none";
+}
+
+function nextSlide() {
+  showSlide(currentSlide + 1);
+
+  console.log(currentSlide)
+  if (currentSlide == 1) {
+    showInput("text-input")
+  }
+  if (currentSlide == 2) {
+    saveAndHideInput("text-input", "question1_drug")
+    showInput("range-slider")
+  }
+  if (currentSlide == 3) {
+    saveAndHideInput("range-slider", "question2_craving")
+    console.log(data)
+    switchToShop()
+  }
+}
+
+
+
+function switchToShop() {
+    document.getElementById('slideshow').style.display='none'
+    document.getElementById('next-button').style.display='none'
+    
     var tenMinutes = 60 * 10,
     display = document.getElementById('timer');
     startTimer(tenMinutes, display);
-};
+}
 
 if(sessionStorage.getItem("counter") === null) {
     sessionStorage.setItem("counter", 500);
@@ -290,8 +375,6 @@ if(sessionStorage.getItem("counter") === null) {
 
   function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
-    var timeBar = document.getElementById('timer-bar');
-    var width = 100;
   
     var interval = setInterval(function () {
       minutes = parseInt(timer / 60, 10);
@@ -309,16 +392,14 @@ if(sessionStorage.getItem("counter") === null) {
 
       console.log(duration);
   
-      width -= 100 / duration;
-      timeBar.style.width = width + '%';
     }, 1000);
   }
   
-// Navigate 
 
 function goToCategory(categoryName, color) {
     fillItemTable(categoryName, color)
     document.getElementById('item-page').style.display='flex'
+    document.getElementById('checkout-page').style.display='none'
     document.getElementById('category-page').style.display='none'
 
     document.getElementById('back-arrow-button').style.visibility='visible'  
@@ -327,9 +408,19 @@ function goToCategory(categoryName, color) {
 function goToIndex() {
     hideImage()
     document.getElementById('category-page').style.display='flex'
+    document.getElementById('checkout-page').style.display='none'
     document.getElementById('item-page').style.display='none'
  
     document.getElementById('back-arrow-button').style.visibility='hidden'   
+}
+
+function goToCheckout() {
+    hideImage()
+    document.getElementById('checkout-page').style.display='flex'
+    document.getElementById('item-page').style.display='none'
+    document.getElementById('category-page').style.display='none'
+ 
+    document.getElementById('back-arrow-button').style.visibility='visible'   
 }
 
 
@@ -344,33 +435,52 @@ function fillCategoryTable() {
 
     // Loop through the lists and add rows to the table
 
-    i = 0
+    for (var m = 0; m<10; m++) {
 
-    for (var f = 0; i < categoryNames.length; f++) {
-        var row = tableBody.insertRow();
+        i = 0
 
-        for (var g = 0; g < 7 && i < categoryNames.length; g++,i++) {
-
-            var color = colorPalette[i]
-
-            var categoryCell = row.insertCell();
-            // categoryCell.setAttribute("class", "box")
-            categoryCell.textContent = categoryNames[i]
-            categoryCell.className = "category-box"
-            categoryCell.style = box_style + `background-color:${color};` //`border-bottom:solid 7px ${color};` //
-            categoryCell.onclick = function(categoryName, color) {
-                return ()=> goToCategory(categoryName, color)
-            }(categoryNames[i], color)
+        for (var f = 0; i < categoryNames.length; f++) {
+            var row = tableBody.insertRow();
+    
+            for (var g = 0; g < 7 && i < categoryNames.length; g++,i++) {
+    
+                var color = colorPalette[8]
+    
+                var categoryCell = row.insertCell();
+                // categoryCell.setAttribute("class", "box")
+                categoryCell.textContent = categoryNames[i]
+                categoryCell.className = "category-box"
+                categoryCell.id = "category-box"
+                categoryCell.style = box_style + `background-color:${color};` //`border-bottom:solid 7px ${color};` //
+                categoryCell.onclick = function(categoryName, color) {
+                    return ()=> goToCategory(categoryName, color)
+                }(categoryNames[i], color)
+            }
         }
+
     }
 }
 
+color_counter = 0;
+category_color_dict = {}
+function colorBasedOnOrder(categoryName) {
+    if (!(categoryName in category_color_dict)) {
+        category_color_dict[categoryName] = colorPalette[color_counter];
+      }
+    color_counter++;
+    console.log(category_color_dict)
+    return category_color_dict[categoryName]
+}
+
+
+uncovered = []
 
 function fillItemTable(categoryName, color) {
-    categoryName = "Jewlery"
-    var path = `images_chosen/${categoryName}/`
+    var path = `images_chosen/${"Jewlery"}/`
+    var pathTemp = `images_chosen/${categoryName}/`
     // var path = "assets/images"
 
+    backgroundColor = colorBasedOnOrder(categoryName)
     
 
     const table = document.querySelector('#item-table'); // select the table element
@@ -384,7 +494,7 @@ function fillItemTable(categoryName, color) {
         table.removeChild(table.firstChild); // remove all child elements
     }
 
-    var itemImage = categoryItemDict[categoryName]
+    var itemImage = categoryItemDict["Jewlery"]
 
     // Get the table body
     var tableBody = document.querySelector("#item-table");
@@ -396,46 +506,58 @@ function fillItemTable(categoryName, color) {
         for (var g = 0; g < 3; g++) {
 
             var img = path + itemImage[g % (itemImage.length - 1)];
+            var squareID = pathTemp + i + g; 
             var price = itemPrice[g % (itemImage.length - 1)];
 
             var itemCell = row.insertCell();
             itemCell.className = "item-box";
+            itemCell.id = "item-box"
             
             // itemCell.style = box_style + `background-color:${color};` + "font-size:30px;";
-            itemCell.style = box_style + `background-color:white;` + "font-size:30px;";
+            itemCell.style = box_style + `background-color:${backgroundColor};` + "font-size:30px;";
 
-            itemCell.onclick = function (img_arg, price_arg) {
-            return () => showItem(img_arg, price_arg);
-            }(img, price);
-
+            
             var imageElement = document.createElement("img");
-            imageElement.src = img;
-            imageElement.style.width = "60%";
-            imageElement.style.height = "60%";
+            itemCell.onclick = function (img_arg,squareID_arg, price_arg, imageElement_arg) {
+            return () => showItem(img_arg, squareID_arg, price_arg, imageElement_arg);
+            }(img,squareID, price, imageElement);  
+
+            console.log(squareID, uncovered);
+            if (squareID in uncovered) {
+                console.log("Found!")
+                imageElement.src = img;
+            }
+
+            // imageElement.src = img;
+            imageElement.style.width = "100%";
+            imageElement.style.height = "100%";
             imageElement.style.display = "block";
             imageElement.style.margin = "auto";
-            imageElement.style.filter = "blur(3px)";
+            // imageElement.style.filter = "blur(3px)";
 
             itemCell.appendChild(imageElement);
         }
     }
 
     tableBody.style.overflow = "auto";
-    
-
 
 }
 
 
 // Show / Hide Item
 
-function showItem(imageSrc, priceVal) {
+function showItem(imageSrc, squareID, priceVal, imageElement) {
 
     var popup = document.querySelector('.popup');
     var popupImage = document.querySelector('#popup-image');
     var price = document.querySelector('#item-price');
     var purchaseButton = document.querySelector('#purchase-button');
     var overlay = document.querySelector('.overlay');
+
+    if (!(squareID in uncovered)) {
+        imageElement.src = imageSrc;
+        uncovered.push(squareID);
+    }
 
     popupImage.src = imageSrc;
     price.innerHTML = priceVal;
@@ -467,7 +589,7 @@ function hideImage() {
 
 function purchase(imageSrc, priceVal) {
 
-    changeTotalPriceBy(priceVal.slice(0,-1))
+    changeTotalPriceBy(-priceVal.slice(0,-1))
 
     addItemToCart(imageSrc, priceVal)
     hideImage()
@@ -484,7 +606,6 @@ var i=0
 function addItemToCart(imageSrc, priceVal) {
 
     var tableBody = document.querySelector("#checkout-table");
-    tableBody.style = "width: 30%;"
 
     var row = tableBody.insertRow(0); // Add row at index 0 to insert at the top
     var cell = row.insertCell(0); // Add cell at index 0 to insert at the beginning
@@ -524,9 +645,8 @@ function addItemToCart(imageSrc, priceVal) {
 
 
 function removeItemFromCart(cartItem, price, id) {
-    total_price = document.getElementById("total-price").innerHTML
-    total_price = parseInt(total_price) - parseInt(price)
-    document.getElementById("total-price").innerHTML = total_price
+
+    changeTotalPriceBy(price)
 
     // cartItem.display="none"
     document.getElementById(id).style.display="none"
