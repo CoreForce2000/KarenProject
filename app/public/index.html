@@ -5,26 +5,107 @@
 </head>
 <body>
 
+    <!-- Input Box -->
+
+    <div id="input-box" style="display:block;
+                                  width:250px;
+                                  padding: 20px 20px 20px 20px;
+                                  font-family: Calibri;
+                                  position: fixed;
+                                  box-shadow: 5px 5px 5px grey;
+                                  top:calc(50% - 365px);
+                                  left:calc(50% - 150px);
+                                  border: 1px solid black;
+                                  z-index:930;
+                                  background: #FFFFFF;">
+
+      <b>Please Enter Participant Details</b> <br><br><br>
+  
+      <div style="font-family: Calibri"> Volunteer ID 
+        <input id="id" autocomplete="false" type="number" maxlength="4" placeholder="" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" style="float:right; width:70px" required/>
+      </div><br/>
+
+      <fieldset style="border-color:rgb(247, 245, 245); box-shadow:0 0 0px">
+        <legend>Gender</legend>
+        <input type="radio" id="male" name="gender" value="male" required>
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label><br> 
+      </fieldset><br/>
+
+      <div style="font-family: Calibri">Group 
+        <input id="age" autocomplete="false" type="number" maxlength="3" value="" style="float:right; width:100px">
+      </div><br/>
+
+      <div style="font-family: Calibri">Age 
+        <input id="age" autocomplete="false" type="number" maxlength="3" value="" style="float:right; width:50px">
+      </div><br/>
+
+      <fieldset style="border-color:rgb(247, 245, 245); box-shadow:0 0 0px">
+        <legend>Handedness</legend>
+        <input type="radio" id="left" name="handedness" value="left" required>
+        <label for="left">Left</label>
+        <input type="radio" id="right" name="handedness" value="right">
+        <label for="right">Right</label><br>
+      </fieldset><br/>
+
+      <hr style="height:1px;border:none;color:rgb(139, 139, 139);background-color:rgb(141, 141, 141)">
+      <br>
+      <div style="margin: auto; width:fit-content">
+
+        <input type="checkbox" id="useMouse">
+        <label for="vehicle2"> Use mouse </label><br>
+  
+        <input type="checkbox" id="fullscreen" checked>
+        <label for="vehicle2"> Fullscreen </label><br>
+  
+  
+        <button type="submit" id="button" onclick="submitInput()" style="background-color: #4CAF50;
+                                    border: none;
+                                    color: white;
+                                    padding: 15px 32px;
+                                    text-align: center;
+                                    text-decoration: none;
+                                    display: inline-block;
+                                    font-size: 16px;
+                                    margin: 4px 2px;
+                                    cursor: pointer;">Run Task</button>
+
+      </div>
+
+    </div>
+
+
+
 	<!-- TOPBAR (SHARED) -->
 
     <div id="slideshow">
         <img src="assets/slides/phase1/Slide1.png" class="slide">
         <img src="assets/slides/phase1/Slide2.png" class="slide">
         <img src="assets/slides/phase1/Slide3.png" class="slide">
-        <img src="assets/slides/phase1/Slide4.PNG" class="slide">
-        <img id="next-button" src="assets/buttonNext.PNG" onclick="nextSlide()">
+        <img src="assets/slides/phase1/Slide4.png" class="slide">
+        <img src="assets/slides/phase1/Slide5.png" class="slide">
+        <img src="assets/slides/phase1/Slide6.png" class="slide">
+        <img src="assets/slides/phase1/Slide7.png" class="slide">
+        <img src="assets/slides/phase1/Slide8.png" class="slide">
+        <img id="next-button" src="assets/buttonNext.png" onclick="nextSlide()">
         
         <input class="slide-input" type="text" id="text-input" placeholder="Enter name">
-        <input class="slide-input" type="range" min="0" max="100" value="50" id="range-slider">
+        <input class="slide-input" type="range" min="0" max="100" value="0" id="range-slider">
+        
+
+
+
         <div id="debug" style="position:absolute; bottom:0; left:0;"> empty </div>
     </div>
 
     <img id="cover-slide" src="assets/slides/Cover.png" class="slide">
+    <img id="white-slide" src="assets/slides/White.png" class="slide">
 
     <div class="topbar">
         <img class="button" id="back-arrow-button" onclick="goToIndex()" src="assets/arrow_white.png"></img>
         
-        <div id="timer">10:00</div>
+        <div id="timer">15:00</div>
         
         <div id="price-and-cart-div">
             <div id="total-price-text"> <span id="total-price">1000</span> £</div>

@@ -219,13 +219,13 @@ const categoryItemDict = {
 }
 
 const itemPrice = [
-    "10£",
-    "20£",
-    "30£",
+    "60£",
+    "120£",
+    "150£",
+    "140£",
+    "190£",
     "40£",
     "50£",
-    "30£",
-    "20£",
     "10£",
     "50£",
     "10£",
@@ -281,6 +281,11 @@ window.onload = function() {
     init_event_logger()
 };
 
+function submitInput() {
+    document.getElementById("input-box").style.display = "none";
+    document.getElementById("white-slide").style.display = "none";
+}
+
 
 function init_event_logger() {
     var allElements = document.getElementsByTagName('*');
@@ -306,6 +311,7 @@ function logElementInteraction(event) {
 
 // Navigate 
 
+
 function switchToSlides() {
     document.getElementById('slideshow').style.display='flex'
 }
@@ -313,6 +319,13 @@ function switchToSlides() {
 var currentSlide = 0;
 var slides = document.querySelectorAll('.slide');
 var nextButton = document.getElementById('next-button');
+
+
+//////////////////////////////////////////////////////////////////////////////////////// 
+// 
+// SLIDES AND QUESTIONS
+// 
+//////////////////////////////////////////////////////////////////////////////////////// 
 
 
 document.addEventListener("keydown", function(event) {
@@ -335,10 +348,14 @@ data = {}
 function showInput(inputID) {
     document.getElementById(inputID).style.display = "block"
 }
-function saveAndHideInput(inputID, varName) {
-    data[varName] = document.getElementById(inputID).value;
+function hideInput(inputID) {
     document.getElementById(inputID).style.display = "none";
 }
+function saveInput(inputID, varName) {
+    data[varName] = document.getElementById(inputID).value;
+}
+
+
 
 function nextSlide() {
   showSlide(currentSlide + 1);
@@ -348,23 +365,35 @@ function nextSlide() {
     showInput("text-input")
   }
   if (currentSlide == 2) {
-    saveAndHideInput("text-input", "question1_drug")
+    saveInput("text-input", "question1_drug")
+    hideInput("text-input")
     showInput("range-slider")
   }
   if (currentSlide == 3) {
-    saveAndHideInput("range-slider", "question2_craving")
-    console.log(data)
+    saveInput("range-slider", "question2_craving")
+  }
+  if (currentSlide == 4) {
+    saveInput("range-slider", "question3_craving_group")
+    hideInput("range-slider")
+  }
+  if (currentSlide == 7) {
     switchToShop()
   }
 }
 
+
+//////////////////////////////////////////////////////////////////////////////////////// 
+// 
+// SHOP
+// 
+//////////////////////////////////////////////////////////////////////////////////////// 
 
 
 function switchToShop() {
     document.getElementById('slideshow').style.display='none'
     document.getElementById('next-button').style.display='none'
     
-    var tenMinutes = 60 * 10,
+    var tenMinutes = 60 * 15,
     display = document.getElementById('timer');
     startTimer(tenMinutes, display);
 }
@@ -499,11 +528,13 @@ function fillItemTable(categoryName, color) {
     // Get the table body
     var tableBody = document.querySelector("#item-table");
 
+    console.log(uncovered);
+
     // Loop through the lists and add rows to the table
     for (var f,i = 0; i < 7; f++, i++) {
         var row = tableBody.insertRow();
 
-        for (var g = 0; g < 3; g++) {
+        for (var g = 0; g < 7; g++) {
 
             var img = path + itemImage[g % (itemImage.length - 1)];
             var squareID = pathTemp + i + g; 
@@ -522,8 +553,7 @@ function fillItemTable(categoryName, color) {
             return () => showItem(img_arg, squareID_arg, price_arg, imageElement_arg);
             }(img,squareID, price, imageElement);  
 
-            console.log(squareID, uncovered);
-            if (squareID in uncovered) {
+            if (uncovered.includes(squareID)) {
                 console.log("Found!")
                 imageElement.src = img;
             }
@@ -639,10 +669,7 @@ function addItemToCart(imageSrc, priceVal) {
     cell.appendChild(newItem);
 
     i++;
-
-
 }
-
 
 function removeItemFromCart(cartItem, price, id) {
 
@@ -650,21 +677,6 @@ function removeItemFromCart(cartItem, price, id) {
 
     // cartItem.display="none"
     document.getElementById(id).style.display="none"
-}
-
-
-function getStyle(oElm, strCssRule){
-    var strValue = "";
-    if(document.defaultView && document.defaultView.getComputedStyle){
-        strValue = document.defaultView.getComputedStyle(oElm, "").getPropertyValue(strCssRule);
-    }
-    else if(oElm.currentStyle){
-        strCssRule = strCssRule.replace(/\-(\w)/g, function (strMatch, p1){
-            return p1.toUpperCase();
-        });
-        strValue = oElm.currentStyle[strCssRule];
-    }
-    return strValue;
 }
 
     
