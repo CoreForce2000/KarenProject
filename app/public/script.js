@@ -1,11 +1,395 @@
+const config = {
+}
+
+const itemPriceRanges = {
+    "BBQ": {
+        "BBQ1": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "BBQ2": {
+            "minimum": 30,
+            "maximum": 35
+        },
+        "BBQ3": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "BBQ4": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "BBQ5": {
+            "minimum": 60,
+            "maximum": 70
+        },
+        "BBQ6": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "BBQ7": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "BBQ8": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "BBQ9": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "BBQ10": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "BBQ11": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "BBQ12": {
+            "minimum": 35,
+            "maximum": 40
+        },
+        "BBQ13": {
+            "minimum": 70,
+            "maximum": 80
+        },
+        "BBQ14": {
+            "minimum": 30,
+            "maximum": 35
+        },
+        "BBQ15": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "BBQ16": {
+            "minimum": 70,
+            "maximum": 80
+        },
+        "BBQ17": {
+            "minimum": 70,
+            "maximum": 80
+        },
+        "BBQ18": {
+            "minimum": 70,
+            "maximum": 80
+        },
+        "BBQ19": {
+            "minimum": 70,
+            "maximum": 80
+        },
+        "BBQ20": {
+            "minimum": 20,
+            "maximum": 30
+        },
+        "BBQ21": {
+            "minimum": 70,
+            "maximum": 80
+        },
+        "BBQ22": {
+            "minimum": 30,
+            "maximum": 40
+        },
+        "BBQ23": {
+            "minimum": 30,
+            "maximum": 40
+        },
+        "BBQ24": {
+            "minimum": 70,
+            "maximum": 80
+        },
+        "BBQ25": {
+            "minimum": 30,
+            "maximum": 40
+        },
+        "BBQ26": {
+            "minimum": 30,
+            "maximum": 40
+        },
+        "BBQ27": {
+            "minimum": 50,
+            "maximum": 60
+        },
+        "BBQ28": {
+            "minimum": 30,
+            "maximum": 35
+        },
+        "BBQ29": {
+            "minimum": 70,
+            "maximum": 80
+        }
+    },
+    "Yoga": {
+        "Yoga1": {
+            "minimum": 15,
+            "maximum": 20
+        },
+        "Yoga2": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga3": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga4": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga5": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga6": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga7": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga8": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga9": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga10": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga11": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga12": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga13": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga14": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga15": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga16": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga17": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga18": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga19": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga20": {
+            "minimum": 30,
+            "maximum": 40
+        },
+        "Yoga21": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga22": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga23": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga24": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga25": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga26": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga27": {
+            "minimum": 10,
+            "maximum": 15
+        },
+        "Yoga28": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga29": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga30": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga31": {
+            "minimum": 20,
+            "maximum": 25
+        },
+        "Yoga32": {
+            "minimum": 10,
+            "maximum": 15
+        }
+    }
+}
+
+const pathToCategories = './assets/categories/'
+
+
+const existingCategories = [
+    "Yoga",
+    "BBQ"
+]
+
+const nonDrugCategories = [
+    "Aftershaves",
+    "Kettles",
+    "Alarm clocks",
+    "Kitchen Aids",
+    "Badminton",
+    "Knife Sets",
+    "Bags Men",
+    "Lego adults",
+    "Barbie",
+    "Lego kids",
+    "Baskets",
+    "Lighters",
+    "Bathrobes",
+    "Make up",
+    "BBQ",
+    "Miniature cars",
+    "Binoculars",
+    "Mugs",
+    "Board Games",
+    "Navigators",
+    "Books Baking",
+    "Party Accessories",
+    "Books Biographies",
+    "Penknives",
+    "Books Cooking",
+    "Perfumes",
+    "Books Non-Fiction",
+    "Plants",
+    "Books Travel",
+    "Playmobil",
+    "Boxing",
+    "Puzzles",
+    "Camping Equipment",
+    "Rucksacks",
+    "Car Accessories",
+    "Rugby",
+    "Cat Accessories",
+    "Running",
+    "Chocolates",
+    "Saucepan Sets",
+    "Cleaning",
+    "Shavers",
+    "Coffee Machines",
+    "Sport Bags",
+    "Coffee Pots",
+    "Stationary",
+    "Computing Accessories",
+    "Storage",
+    "Cricket",
+    "Sunglasses Men",
+    "Cuddly Toys",
+    "Sunglasses Women",
+    "Cushions",
+    "Swatch Watches",
+    "Dinner Sets",
+    "Swimming",
+    "DIQ",
+    "Teapots",
+    "Dog Accessories",
+    "Tennis",
+    "Fishing",
+    "Toaster",
+    "Fitness",
+    "Tooth brush",
+    "Flowers",
+    "Towels",
+    "Football Merchandise",
+    "Toys Boys",
+    "Gaming",
+    "Toys Girls",
+    "Garden",
+    "Travel Bags",
+    "Gift Sets Men",
+    "Travel Mugs",
+    "Gift Sets Women",
+    "Trimmers",
+    "Glassware",
+    "Umbrellas",
+    "Golf",
+    "Vases",
+    "Hair Dryer",
+    "Video Games",
+    "Handbags",
+    "Wallets Men",
+    "Harley Davidson",
+    "Wallets Women",
+    "Headphones",
+    "Water Bottles",
+    "Jewellery",
+    "Webcams",
+    "Yoga"
+];
+
+const drugCategories = [
+    "Cannabis",
+    "Cannabis products",
+    "Cigarettes",
+    "Cigars",
+    "Cocaine",
+    "Crack",
+    "Ecstasy",
+    "Hashish",
+    "Alcopops",
+    "Beer",
+    "Brandy",
+    "Champagne",
+    "Cider",
+    "Cocktails",
+    "Gin",
+    "Prosecco",
+    "Red wine",
+    "Rum",
+    "Heroin",
+    "Hookah",
+    "Pipers",
+    "Vodka",
+    "Rolling Tobacco",
+    "Whisky",
+    "White wine",
+    "Vapin"
+]
+
 const colorPalette = [
-    
-    "#FF6F61", 
-    "#6B5B95", 
-    "#88B04B", 
-    "#F7CAC9", 
-    "#92A8D1", 
-    "#955251", 
+    "#FF6F61",
+    "#6B5B95",
+    "#88B04B",
+    "#F7CAC9",
+    "#92A8D1",
+    "#955251",
     "#B565A7",
     "#F7CAC9",
     "#92A8D1",
@@ -63,222 +447,80 @@ const colorPalette = [
     "#A7A7A7",
     "#BDBDBD",
     "#A6A6A6",
-    "#BCBCBC", ]
+    "#BCBCBC"]
+
 
 
 const govColors = {
-    green:"#00703C",
-    lightgrey:"#F3F2F1",
-    blue:"#1D70B8",
-    black:"#0B0C0C"
+    green: "#00703C",
+    lightgrey: "#F3F2F1",
+    blue: "#1D70B8",
+    black: "#0B0C0C"
 }
 
 const amazonColors = {
-    darkblue:"#131921",
-    orange:"#FEBD69"
+    darkblue: "#131921",
+    orange: "#FEBD69"
+}
+
+
+box_style = ""
+    + "box-shadow:1px 1px 5px 1px lightgrey;"
+    + "border:solid 0px black;"
+    + "margin: 10px;"
+    + "width: 10vw;"
+    + "height: 10vw;"
+    + "font-size: 1.5vw;"
+    + "background-color:" + govColors.lightgrey + ";"
+
+
+//////////////////////////////////////////////////////////////////////////////////////// 
+// 
+// HELPER FUNCTIONS
+// 
+//////////////////////////////////////////////////////////////////////////////////////// 
+
+// use config imageNameFormat string and replace category and number with actual values
+function getImageName(category, number) {
+    return category + " (" + number + ").jpg"
+}
+
+// use config imageExcelFormat string and replace category and number with actual values
+
+function getImageExcelName(category, number) {
+    return `${category}${number}`
+}
+
+// use config excelNameFormat string and replace category with actual value
+
+function getExcelName(category) {
+    return `${category} costs.xlsx`
+}
+
+
+function toPoundString(number) {
+    return "£" + number.toString();
 }
 
 
 
-const categoryItemDict = {
-    'Apparel': ['Image_Belt foto9.jpg',
-  'Image_Boots foto2.jpg',
-  'Image_Boots foto8.jpg',
-  'Image_Dresses foto1.jpg',
-  'Image_Dresses foto4.jpg',
-  'Image_Hoodie1.jpg',
-  'Image_Hoodie3.jpg',
-  'Image_Hoodie9.jpg',
-  'Image_Jeans3.jpg',
-  'Image_Sandals foto4.jpg',
-  'Image_Sandals foto6.jpg',
-  'Image_Sneakers foto8.jpg',
-  'Image_Socks foto9.jpg'],
-
- 'Beauty': ['Image_Eyeliner foto6.jpg',
-  'Image_Lip Care foto2.jpg',
-  'Image_Lip Care foto7.jpg',
-  'Image_Lipstick4.jpg',
-  'Image_Mascara foto4.jpg',
-  'Image_Self-Tanners foto5.jpg',
-  'Image_Sun Care foto4.jpg',
-  'Image_Sun Care foto5.jpg',
-  'Image_Toners foto1.jpg'],
-
- 'Electronics': ['Image_Bluetooth Speaker foto1.jpg',
-  'Image_Bluetooth Speaker foto7.jpg',
-  'Image_Bluetooth Speaker8.jpg',
-  'Image_Cameras foto4.jpg',
-  'Image_External Hard Drives foto3.jpg',
-  'Image_Gaming Consoles foto2.jpg',
-  'Image_Headphones foto6.jpg',
-  'Image_Headphones8.jpg',
-  'Image_Keyboard foto6.jpg',
-  'Image_Modems foto5.jpg',
-  'Image_Mouse foto3.jpg',
-  'Image_Portable Charger foto8.jpg',
-  'Image_Smartphones foto2.jpg',
-  'Image_Speakers foto7.jpg'],
-
-  'Games & Toys':['Image_Art Supplies foto3.jpg',
- 'Image_Art Supplies foto4.jpg',
- 'Image_Art Supplies foto8.jpg',
- 'Image_Board Games foto2.jpg',
- 'Image_Doll4.jpg',
- 'Image_Puzzle5.jpg',
- 'Image_Remote Control Cars foto5.jpg',
- 'Image_Remote Control Cars foto9.jpg',
- 'Image_Stuffed Animals foto7.jpg',
- 'Image_Stuffed Animals foto8.jpg'],
-
- 'Jewlery':['Image_Earring4.jpg',
- 'Image_Earring6.jpg',
- 'Image_Necklace4.jpg',
- 'Image_Ring9.jpg',
- 'Image_Tie Clips foto3.jpg',
- 'Image_Tie Clips foto4.jpg',
- 'Image_Watch6.jpg'],
-
- 'Sports':['Image_Baseball Bat foto3.jpg',
- 'Image_Basketball foto8.jpg',
- 'Image_Basketball1.jpg',
- 'Image_Dumbbell2.jpg',
- 'Image_Dumbbell3.jpg',
- 'Image_Fitness Tracker6.jpg',
- 'Image_Football6.jpg',
- 'Image_Jump Rope foto5.jpg',
- 'Image_Jump Rope foto6.jpg',
- 'Image_Running Shoes1.jpg',
- 'Image_Running Shoes6.jpg',
- 'Image_Running Shoes8.jpg',
- 'Image_Swimming Goggles1.jpg',
- 'Image_Swimming Goggles3.jpg',
- 'Image_Tennis Racket1.jpg',
- 'Image_Tennis Racket4.jpg',
- 'Image_Yoga Mat foto9.jpg'],
-
- 'Tools':['Image_Circular Saw foto2.jpg',
- 'Image_Drill foto2.jpg',
- 'Image_Drill foto3.jpg',
- 'Image_Drill foto7.jpg',
- 'Image_Drill1.jpg',
- 'Image_Flashlight foto3.jpg',
- 'Image_Hacksaw foto8.jpg',
- 'Image_Hammer2.jpg',
- 'Image_Hammer7.jpg',
- 'Image_Pliers foto7.jpg',
- 'Image_Power Sander foto4.jpg',
- 'Image_Screwdriver1.jpg',
- 'Image_Screwdriver8.jpg'],
-
- 'Flowers':[],
- 'Plants':[],
- 'Gifts':[],
- 'Books':[],
- 'Music':[],
- 'Sport':[],
- 'Stationary':[],
- 'Household':[],
- 'Cooking':[],
- 'Tobacco':[],
- 'Event Tickets':[],
- 'Ciggars':[],
- 'Alcohol':[],
- 'Vapes':[],
-
- "Apparel": [],
- "Beauty": [],
- "Books": [],
- "Electronics": [],
- "Furniture": [],
- "Grocery": [],
- "Health": [],
- "Home": [],
- "Jewelry": [],
- "Kids": [],
- "Kitchen": [],
- "Music": [],
- "Office": [],
- "Outdoor": [],
- "Pet Supplies": [],
- "Shoes": [],
- "Sports": [],
- "Toys": [],
- "Automotive": [],
- "Baby": [],
- "Bags": [],
- "Cameras": [],
- "Computers": [],
- "Crafts": [],
- "Food": [],
- "Garden": [],
- "Musical Instruments": []
- 
+// function to read excel file from directory and store in json (not using XLSX)
 
 
-}
-
-const itemPrice = [
-    "60£",
-    "120£",
-    "150£",
-    "140£",
-    "190£",
-    "40£",
-    "50£",
-    "10£",
-    "50£",
-    "10£",
-    "20£",
-    "30£",
-    "40£",
-    "50£",
-    "30£",
-    "20£",
-    "10£",
-    "50£",
-    "10£",
-    "20£",
-    "30£",
-    "40£",
-    "50£",
-    "30£",
-    "20£",
-    "10£",
-    "50£",
-    "10£",
-    "20£",
-    "30£",
-    "40£",
-    "50£",
-    "30£",
-    "20£",
-    "10£",
-    "50£",
-    "30£"
-]
+//////////////////////////////////////////////////////////////////////////////////////// 
+// 
+// LOGGER AND INITIALIZATION
+// 
+//////////////////////////////////////////////////////////////////////////////////////// 
 
 
-box_style =  ""
-                +"box-shadow:1px 1px 5px 1px lightgrey;"
-                +"border:solid 0px black;"
-                // +"opacity:0.3;"
-                // +"border-radius: 20px;"
-                +"margin: 10px;"
-                +"width: 10vw;"
-                +"height: 10vw;"
-                +"font-size: 1.5vw;"
-                +"background-color:"+govColors.lightgrey+";"
-  
 
-    
-window.onload = function() {
+window.onload = function () {
     switchToSlides()
 
     goToIndex()
     fillCategoryTable()
-
-    init_event_logger()
+    initEventLogger()
 };
 
 function submitInput() {
@@ -287,7 +529,7 @@ function submitInput() {
 }
 
 
-function init_event_logger() {
+function initEventLogger() {
     var allElements = document.getElementsByTagName('*');
     for (var i = 0; i < allElements.length; i++) {
         allElements[i].addEventListener('click', logElementInteraction);
@@ -307,13 +549,13 @@ function logElementInteraction(event) {
         console.log(logEntry);
         last_interaction = timestamp
     }
-    }
+}
 
 // Navigate 
 
 
 function switchToSlides() {
-    document.getElementById('slideshow').style.display='flex'
+    document.getElementById('slideshow').style.display = 'flex'
 }
 
 var currentSlide = 0;
@@ -328,18 +570,19 @@ var nextButton = document.getElementById('next-button');
 //////////////////////////////////////////////////////////////////////////////////////// 
 
 
-document.addEventListener("keydown", function(event) {
-    if (event.keyCode === 32) { // 32 is the key code for spacebar
+document.addEventListener("keydown", function (event) {
+    if (event.keyCode === 13) { // 13 is the key code for enter
         var image = document.getElementById("cover-slide");
         image.parentNode.removeChild(image);
-        nextSlide()
-    }})
-   
+        nextSlide();
+    }
+})
+
 
 function showSlide(n) {
-  slides[currentSlide].style.display = 'none';
-  currentSlide = (n + slides.length) % slides.length;
-  slides[currentSlide].style.display = 'block';
+    slides[currentSlide].style.display = 'none';
+    currentSlide = (n + slides.length) % slides.length;
+    slides[currentSlide].style.display = 'block';
 }
 
 
@@ -358,28 +601,31 @@ function saveInput(inputID, varName) {
 
 
 function nextSlide() {
-  showSlide(currentSlide + 1);
+    showSlide(currentSlide + 1);
 
-  console.log(currentSlide)
-  if (currentSlide == 1) {
-    showInput("text-input")
-  }
-  if (currentSlide == 2) {
-    saveInput("text-input", "question1_drug")
-    hideInput("text-input")
-    showInput("range-slider")
-  }
-  if (currentSlide == 3) {
-    saveInput("range-slider", "question2_craving")
-  }
-  if (currentSlide == 4) {
-    saveInput("range-slider", "question3_craving_group")
-    hideInput("range-slider")
-  }
-  if (currentSlide == 7) {
-    switchToShop()
-  }
+    console.log(currentSlide)
+    if (currentSlide == 1) {
+        showInput("text-input")
+    }
+    if (currentSlide == 2) {
+        saveInput("text-input", "question1_drug")
+        hideInput("text-input")
+        showInput("range-slider")
+    }
+    if (currentSlide == 3) {
+        saveInput("range-slider", "question2_craving")
+    }
+    if (currentSlide == 4) {
+        saveInput("range-slider", "question3_craving_group")
+        hideInput("range-slider")
+    }
+    if (currentSlide == 7) {
+        switchToShop()
+    }
 }
+
+
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////// 
@@ -390,103 +636,107 @@ function nextSlide() {
 
 
 function switchToShop() {
-    document.getElementById('slideshow').style.display='none'
-    document.getElementById('next-button').style.display='none'
-    
+    document.getElementById('slideshow').style.display = 'none'
+    document.getElementById('next-button').style.display = 'none'
+
     var tenMinutes = 60 * 15,
-    display = document.getElementById('timer');
+        display = document.getElementById('timer');
     startTimer(tenMinutes, display);
 }
 
-if(sessionStorage.getItem("counter") === null) {
+if (sessionStorage.getItem("counter") === null) {
     sessionStorage.setItem("counter", 500);
-  }
+}
 
-  function startTimer(duration, display) {
+function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
-  
-    var interval = setInterval(function () {
-      minutes = parseInt(timer / 60, 10);
-      seconds = parseInt(timer % 60, 10);
-  
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
-  
-      display.textContent = minutes + ":" + seconds;
-  
-      if (--timer < 0) {
-        clearInterval(interval);
-        display.textContent = "Time's up!";
-      }
 
-      console.log(duration);
-  
+    var interval = setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            clearInterval(interval);
+            display.textContent = "Time's up!";
+        }
+
+        console.log(duration);
+
     }, 1000);
-  }
-  
+}
+
 
 function goToCategory(categoryName, color) {
     fillItemTable(categoryName, color)
-    document.getElementById('item-page').style.display='flex'
-    document.getElementById('checkout-page').style.display='none'
-    document.getElementById('category-page').style.display='none'
+    document.getElementById('item-page').style.display = 'flex'
+    document.getElementById('checkout-page').style.display = 'none'
+    document.getElementById('category-page').style.display = 'none'
 
-    document.getElementById('back-arrow-button').style.visibility='visible'  
+    document.getElementById('back-arrow-button').style.visibility = 'visible'
 }
 
 function goToIndex() {
     hideImage()
-    document.getElementById('category-page').style.display='flex'
-    document.getElementById('checkout-page').style.display='none'
-    document.getElementById('item-page').style.display='none'
- 
-    document.getElementById('back-arrow-button').style.visibility='hidden'   
+    document.getElementById('category-page').style.display = 'flex'
+    document.getElementById('checkout-page').style.display = 'none'
+    document.getElementById('item-page').style.display = 'none'
+
+    document.getElementById('back-arrow-button').style.visibility = 'hidden'
 }
 
 function goToCheckout() {
     hideImage()
-    document.getElementById('checkout-page').style.display='flex'
-    document.getElementById('item-page').style.display='none'
-    document.getElementById('category-page').style.display='none'
- 
-    document.getElementById('back-arrow-button').style.visibility='visible'   
+    document.getElementById('checkout-page').style.display = 'flex'
+    document.getElementById('item-page').style.display = 'none'
+    document.getElementById('category-page').style.display = 'none'
+    document.getElementById('back-arrow-button').style.visibility = 'visible'
 }
 
 
 // Fill tables
 
 function fillCategoryTable() {
-    
-    categoryNames = Object.keys(categoryItemDict)
+
 
     // Get the table body
     var tableBody = document.querySelector("#category-table");
 
     // Loop through the lists and add rows to the table
 
-    for (var m = 0; m<10; m++) {
+    for (var m = 0; m < 10; m++) {
 
         i = 0
 
-        for (var f = 0; i < categoryNames.length; f++) {
+        for (var f = 0; i < nonDrugCategories.length; f++) {
             var row = tableBody.insertRow();
-    
-            for (var g = 0; g < 7 && i < categoryNames.length; g++,i++) {
-    
+
+            for (var g = 0; g < 7 && i < nonDrugCategories.length; g++, i++) {
+
                 var color = colorPalette[8]
-    
+
                 var categoryCell = row.insertCell();
                 // categoryCell.setAttribute("class", "box")
-                categoryCell.textContent = categoryNames[i]
+                categoryCell.textContent = nonDrugCategories[i]
                 categoryCell.className = "category-box"
                 categoryCell.id = "category-box"
                 categoryCell.style = box_style + `background-color:${color};` //`border-bottom:solid 7px ${color};` //
-                categoryCell.onclick = function(categoryName, color) {
-                    return ()=> goToCategory(categoryName, color)
-                }(categoryNames[i], color)
+                categoryCell.onclick = function (categoryName, color) {
+                    return () => goToCategory(categoryName, color)
+                }(nonDrugCategories[i], color)
+
+                categoryCell.onmouseover = function () {
+                    this.style.backgroundColor = govColors.blue;
+                }
+                categoryCell.onmouseout = function () {
+                    this.style.backgroundColor = color;
+                }
             }
         }
-
     }
 }
 
@@ -495,7 +745,7 @@ category_color_dict = {}
 function colorBasedOnOrder(categoryName) {
     if (!(categoryName in category_color_dict)) {
         category_color_dict[categoryName] = colorPalette[color_counter];
-      }
+    }
     color_counter++;
     console.log(category_color_dict)
     return category_color_dict[categoryName]
@@ -505,71 +755,81 @@ function colorBasedOnOrder(categoryName) {
 uncovered = []
 
 function fillItemTable(categoryName, color) {
-    var path = `images_chosen/${"Jewlery"}/`
-    var pathTemp = `images_chosen/${categoryName}/`
-    // var path = "assets/images"
+    //get divs
+    var table = document.querySelector("#item-table");
+    var stripe = document.querySelector('#item-page')
 
+    while (table.firstChild) {
+        table.removeChild(table.firstChild); // remove all child elements 
+    }
+
+    //get Images from Category - with temp
+    var categoryNameTemp ="Yoga"
+    if (existingCategories.includes(categoryName)) {
+        categoryNameTemp = categoryName
+    }
+    var path = pathToCategories + categoryName + "/"
+    var pathTemp = pathToCategories + categoryNameTemp + "/"
+
+    //get correct colors
     backgroundColor = colorBasedOnOrder(categoryName)
-    
-
-    const table = document.querySelector('#item-table'); // select the table element
-
-    var stripe = document.getElementById('item-page')
-    
     stripe.style.backgroundColor = `linear-gradient(to bottom right, ${color}, #000000);`
 
 
-    while (table.firstChild) {
-        table.removeChild(table.firstChild); // remove all child elements
-    }
-
-    var itemImage = categoryItemDict["Jewlery"]
-
-    // Get the table body
-    var tableBody = document.querySelector("#item-table");
-
-    console.log(uncovered);
-
     // Loop through the lists and add rows to the table
-    for (var f,i = 0; i < 7; f++, i++) {
-        var row = tableBody.insertRow();
+
+    for (var i = 1; i < 7; i++) {
+        var row = table.insertRow();
 
         for (var g = 0; g < 7; g++) {
 
-            var img = path + itemImage[g % (itemImage.length - 1)];
-            var squareID = pathTemp + i + g; 
-            var price = itemPrice[g % (itemImage.length - 1)];
+            try {
+                var imgNumber = i * 7 - 6 + g;
+                var img = pathTemp + getImageName(categoryNameTemp, imgNumber);
 
-            var itemCell = row.insertCell();
-            itemCell.className = "item-box";
-            itemCell.id = "item-box"
-            
-            // itemCell.style = box_style + `background-color:${color};` + "font-size:30px;";
-            itemCell.style = box_style + `background-color:${backgroundColor};` + "font-size:30px;";
+                var squareID = pathTemp + i + g;
+                var price = itemPriceRanges[categoryNameTemp][getImageExcelName(categoryNameTemp, imgNumber)]["maximum"];
 
-            
-            var imageElement = document.createElement("img");
-            itemCell.onclick = function (img_arg,squareID_arg, price_arg, imageElement_arg) {
-            return () => showItem(img_arg, squareID_arg, price_arg, imageElement_arg);
-            }(img,squareID, price, imageElement);  
+                var itemCell = row.insertCell();
+                itemCell.className = "item-box";
+                itemCell.id = "item-box"
 
-            if (uncovered.includes(squareID)) {
-                console.log("Found!")
-                imageElement.src = img;
+                itemCell.style = box_style + `background-color:${backgroundColor};` + "font-size:30px;";
+
+                var imageElement = document.createElement("img");
+                itemCell.onclick = function (img_arg, squareID_arg, price_arg, imageElement_arg) {
+                    return () => showItem(img_arg, squareID_arg, price_arg, imageElement_arg);
+                }(img, squareID, price, imageElement);
+
+                if (uncovered.includes(squareID)) {
+                    imageElement.src = img;
+                }
+                itemCell.onmouseover = function () {
+                    this.style.backgroundColor = govColors.blue;
+                }
+                itemCell.onmouseout = function () {
+                    this.style.backgroundColor = backgroundColor;
+                }
+
+                // imageElement.src = img;
+                imageElement.style.width = "100%";
+                imageElement.style.height = "100%";
+                imageElement.style.display = "block";
+                imageElement.style.margin = "auto";
+
+
+                // imageElement.style.filter = "blur(7px)";
+
+                itemCell.appendChild(imageElement);
+            }
+            catch (err) {
+                console.log(err)
             }
 
-            // imageElement.src = img;
-            imageElement.style.width = "100%";
-            imageElement.style.height = "100%";
-            imageElement.style.display = "block";
-            imageElement.style.margin = "auto";
-            // imageElement.style.filter = "blur(3px)";
-
-            itemCell.appendChild(imageElement);
         }
     }
 
-    tableBody.style.overflow = "auto";
+    table.style.overflow = "auto";
 
 }
 
@@ -589,19 +849,21 @@ function showItem(imageSrc, squareID, priceVal, imageElement) {
         uncovered.push(squareID);
     }
 
+    priceValString = toPoundString(priceVal);
+
     popupImage.src = imageSrc;
-    price.innerHTML = priceVal;
+    price.innerHTML = priceValString;
 
     popup.style.display = 'block';
     overlay.style.display = 'block';
 
-    purchaseButton.onclick = function(img_arg, price_arg) {
-    return () => purchase(img_arg, price_arg);
+    purchaseButton.onclick = function (img_arg, price_arg) {
+        return () => purchase(img_arg, price_arg);
     }(imageSrc, priceVal);
 
-    overlay.onclick = function() {
+    overlay.onclick = function () {
         hideImage()
-        };
+    };
 }
 
 function hideImage() {
@@ -619,7 +881,7 @@ function hideImage() {
 
 function purchase(imageSrc, priceVal) {
 
-    changeTotalPriceBy(-priceVal.slice(0,-1))
+    changeTotalPriceBy(-priceVal)
 
     addItemToCart(imageSrc, priceVal)
     hideImage()
@@ -628,11 +890,11 @@ function purchase(imageSrc, priceVal) {
 function changeTotalPriceBy(price) {
 
     total_price = document.getElementById("total-price").innerHTML
-    total_price = parseInt(total_price) + parseInt(price)
+    total_price = parseInt(total_price) + price
     document.getElementById("total-price").innerHTML = total_price
 }
 
-var i=0
+var i = 0
 function addItemToCart(imageSrc, priceVal) {
 
     var tableBody = document.querySelector("#checkout-table");
@@ -644,8 +906,12 @@ function addItemToCart(imageSrc, priceVal) {
     var cartItemPrice = document.querySelector('#cart-item-price').cloneNode(true);
     var cartButton = document.querySelector('#remove-button').cloneNode(true);
 
+    priceValString = toPoundString(priceVal);
+
+
     cartItemImage.src = imageSrc;
-    cartItemPrice.innerHTML = priceVal;
+    cartItemPrice.innerHTML = priceValString;
+
 
     var id = `item_${i}`;
 
@@ -656,12 +922,14 @@ function addItemToCart(imageSrc, priceVal) {
     newItem.style.alignItems = "center"; // Align items vertically in the center
     newItem.style.padding = "10px";
     newItem.style.backgroundColor = "azure";
+    newItem.style.border = "1px solid black";
+
     newItem.appendChild(cartItemImage);
     newItem.appendChild(cartItemPrice);
     newItem.appendChild(cartButton);
 
 
-    cartButton.onclick = function(cartItem, price, id) {
+    cartButton.onclick = function (cartItem, price, id) {
         return () => removeItemFromCart(cartItem, price, id);
     }(newItem, priceVal, id);
 
@@ -676,8 +944,8 @@ function removeItemFromCart(cartItem, price, id) {
     changeTotalPriceBy(price)
 
     // cartItem.display="none"
-    document.getElementById(id).style.display="none"
+    document.getElementById(id).style.display = "none"
 }
 
-    
+
 

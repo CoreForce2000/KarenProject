@@ -1,66 +1,70 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <!-- Input Box -->
 
-    <div id="input-box" style="display:block;
-                                  width:250px;
-                                  padding: 20px 20px 20px 20px;
-                                  font-family: Calibri;
-                                  position: fixed;
-                                  box-shadow: 5px 5px 5px grey;
-                                  top:calc(50% - 365px);
-                                  left:calc(50% - 150px);
-                                  border: 1px solid black;
-                                  z-index:930;
-                                  background: #FFFFFF;">
+    <div id="input-box">
 
-      <b>Please Enter Participant Details</b> <br><br><br>
-  
-      <div style="font-family: Calibri"> Volunteer ID 
-        <input id="id" autocomplete="false" type="number" maxlength="4" placeholder="" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" style="float:right; width:70px" required/>
-      </div><br/>
+        <img src="assets/logo.jpg" style="width: 100%; margin-bottom: 20px;">
 
-      <fieldset style="border-color:rgb(247, 245, 245); box-shadow:0 0 0px">
-        <legend>Gender</legend>
-        <input type="radio" id="male" name="gender" value="male" required>
-        <label for="male">Male</label>
-        <input type="radio" id="female" name="gender" value="female">
-        <label for="female">Female</label><br> 
-      </fieldset><br/>
+        <div style="font-family: Calibri; display: flex; width: 100%; justify-content: space-between;"> Participant ID
+            <input id="id" autocomplete="false" type="text" maxlength="4" placeholder=""
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                style="width:70px; height:24px" required />
+        </div><br />
 
-      <div style="font-family: Calibri">Group 
-        <input id="age" autocomplete="false" type="number" maxlength="3" value="" style="float:right; width:100px">
-      </div><br/>
 
-      <div style="font-family: Calibri">Age 
-        <input id="age" autocomplete="false" type="number" maxlength="3" value="" style="float:right; width:50px">
-      </div><br/>
+        <fieldset style="border-color:rgb(247, 245, 245); box-shadow:0 0 0px">
+            <legend>Gender</legend>
+            <input type="radio" id="male" name="gender" value="male" required>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label><br>
+        </fieldset><br />
 
-      <fieldset style="border-color:rgb(247, 245, 245); box-shadow:0 0 0px">
-        <legend>Handedness</legend>
-        <input type="radio" id="left" name="handedness" value="left" required>
-        <label for="left">Left</label>
-        <input type="radio" id="right" name="handedness" value="right">
-        <label for="right">Right</label><br>
-      </fieldset><br/>
+        <fieldset style="border-color:rgb(247, 245, 245); box-shadow:0 0 0px ;display: flex;">
+            <legend>Group</legend>
+            <select id="group" style="height:24px">
+                <option value="control">Control</option>
+                <option value="crack">Crack</option>
+                <option value="cocaine">Cocaine</option>
+                <option value="heroin">Heroin</option>
+                <option value="cannabis">Cannabis</option>
+                <option value="alcohol">Alcohol</option>
+            </select>
+        </fieldset><br />
 
-      <hr style="height:1px;border:none;color:rgb(139, 139, 139);background-color:rgb(141, 141, 141)">
-      <br>
-      <div style="margin: auto; width:fit-content">
+        <fieldset style="border-color:rgb(247, 245, 245); box-shadow:0 0 0px ;display: flex;">
+            <legend>Age</legend>
+            <input id="age" autocomplete="false" type="number" maxlength="3" value="" style="height:24px;">
+        </fieldset><br />
 
-        <input type="checkbox" id="useMouse">
-        <label for="vehicle2"> Use mouse </label><br>
-  
-        <input type="checkbox" id="fullscreen" checked>
-        <label for="vehicle2"> Fullscreen </label><br>
-  
-  
-        <button type="submit" id="button" onclick="submitInput()" style="background-color: #4CAF50;
+        <fieldset style="border-color:rgb(247, 245, 245); box-shadow:0 0 0px">
+            <legend>Handedness</legend>
+            <input type="radio" id="left" name="handedness" value="left" required>
+            <label for="left">Left</label>
+            <input type="radio" id="right" name="handedness" value="right">
+            <label for="right">Right</label><br>
+        </fieldset><br />
+
+        <hr style="height:1px;border:none;color:rgb(139, 139, 139);background-color:rgb(141, 141, 141)">
+        <br>
+        <div style="margin: auto; width:fit-content">
+
+            <input type="checkbox" id="useMouse">
+            <label for="vehicle2"> Use mouse </label><br>
+
+            <input type="checkbox" id="fullscreen" checked>
+            <label for="vehicle2"> Fullscreen </label><br>
+
+
+            <button type="submit" id="button" onclick="submitInput()" style="background-color: #4CAF50;
                                     border: none;
                                     color: white;
                                     padding: 15px 32px;
@@ -71,13 +75,12 @@
                                     margin: 4px 2px;
                                     cursor: pointer;">Run Task</button>
 
-      </div>
-
+        </div>
     </div>
 
 
 
-	<!-- TOPBAR (SHARED) -->
+    <!-- TOPBAR (SHARED) -->
 
     <div id="slideshow">
         <img src="assets/slides/phase1/Slide1.png" class="slide">
@@ -89,10 +92,10 @@
         <img src="assets/slides/phase1/Slide7.png" class="slide">
         <img src="assets/slides/phase1/Slide8.png" class="slide">
         <img id="next-button" src="assets/buttonNext.png" onclick="nextSlide()">
-        
+
         <input class="slide-input" type="text" id="text-input" placeholder="Enter name">
         <input class="slide-input" type="range" min="0" max="100" value="0" id="range-slider">
-        
+
 
 
 
@@ -104,22 +107,22 @@
 
     <div class="topbar">
         <img class="button" id="back-arrow-button" onclick="goToIndex()" src="assets/arrow_white.png"></img>
-        
+
         <div id="timer">15:00</div>
-        
+
         <div id="price-and-cart-div">
             <div id="total-price-text"> <span id="total-price">1000</span> £</div>
-            <img class="button" id="shopping-cart-button" onclick="goToCheckout()" src="assets/cart_white.png"></img>    
+            <img class="button" id="shopping-cart-button" onclick="goToCheckout()" src="assets/cart_white.png"></img>
         </div>
     </div>
 
-    
+
     <div id="timer-bar"></div>
 
     <div id="content">
-	    
+
         <!-- PAGES -->
-        
+
         <div class="page" id="category-page">
             <table id="category-table"></table>
         </div>
@@ -129,7 +132,9 @@
         </div>
 
         <div class="page" id="checkout-page">
-            <table id="checkout-table"><tr style="height:88vh"></tr></table>
+            <table id="checkout-table">
+                <tr style="height:88vh"></tr>
+            </table>
         </div>
 
         <!-- ITEM TEMPLATES -->
@@ -137,7 +142,8 @@
         <div id="popup" class="popup">
             <div id="item-price-row"> <img id="popup-image" alt="Product Image"> </div>
             <div id="popup-below-image">
-                <button class="button" id="purchase-button" id="purchase-button" onclick="addToCart()">Add to Basket</button>
+                <button class="button" id="purchase-button" id="purchase-button" onclick="addToCart()">Add to
+                    Basket</button>
                 <button class="button" id="back-button" onclick="hideImage()" style="display:none">Back</button>
                 <div id="price-div">
                     <p id="item-price">£40</p>
@@ -157,4 +163,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

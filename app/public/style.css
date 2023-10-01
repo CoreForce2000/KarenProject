@@ -26,6 +26,8 @@ table {
     background-color: var(--blue);
 }
 
+
+
 .overlay {
     z-index: 910;
     display: none;
@@ -36,6 +38,34 @@ table {
     width:100%;
     background-color:#0B0C0C77;
 }
+
+
+
+
+
+#input-box {
+    display: block;
+    width: 250px;
+    padding: 20px 20px 20px 20px;
+    font-family: Calibri;
+    position: fixed;
+    box-shadow: 5px 5px 5px grey;
+    top: calc(50% - 365px);
+    left: calc(50% - 150px);
+    border: 1px solid black;
+    z-index: 930;
+    background: #FFFFFF;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -251,6 +281,8 @@ body {
     vertical-align: middle;
     cursor: pointer;
     padding: 2px;
+    border-radius: 8px;
+
 }
 .item-box {
     border: 1px solid lightgray;
@@ -260,8 +292,17 @@ body {
     vertical-align: middle;
     cursor: pointer;
     padding: 2px;
-
+    border-radius: 8px;
 }
+
+.category-box:hover {
+    background-color: var(--blue);
+}
+
+.item-box:hover {
+    background-color: var(--blue);
+}
+
 #timer {
     color: white;
     text-align: center;
