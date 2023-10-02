@@ -517,7 +517,7 @@ function toPoundString(number) {
 
 
 window.onload = function () {
-    // switchToSlides()
+    switchToSlides()
 
     goToIndex()
     fillCategoryTable()
@@ -552,23 +552,22 @@ function logElementInteraction(event) {
     }
 }
 
-// Navigate 
-
-
-function switchToSlides() {
-    document.getElementById('slideshow').style.display = 'flex'
-}
-
-var currentSlide = 0;
-var slides = document.querySelectorAll('.slide');
-var nextButton = document.getElementById('next-button');
-
 
 //////////////////////////////////////////////////////////////////////////////////////// 
 // 
 // SLIDES AND QUESTIONS
 // 
 //////////////////////////////////////////////////////////////////////////////////////// 
+
+var currentSlide = 0;
+var slides = document.querySelectorAll('.slide');
+var nextButton = document.getElementById('next-button');
+
+function switchToSlides() {
+    document.getElementById('slideshow').style.display = 'flex'
+    document.getElementById('shop-content').style.display = 'none'
+}
+
 
 
 document.addEventListener("keydown", function (event) {
@@ -627,6 +626,13 @@ function nextSlide() {
 
 
 
+var runtimeVariables = {
+    timerPaused : false,
+    uncovered : []
+}
+
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////// 
 // 
@@ -636,40 +642,67 @@ function nextSlide() {
 
 
 function switchToShop() {
+    document.getElementById('shop-content').style.display = 'flex'
     document.getElementById('slideshow').style.display = 'none'
     document.getElementById('next-button').style.display = 'none'
 
-    var tenMinutes = 60 * 15,
-        display = document.getElementById('timer');
-    startTimer(tenMinutes, display);
+    startTimer(60 * 15);
 }
 
 if (sessionStorage.getItem("counter") === null) {
     sessionStorage.setItem("counter", 500);
 }
 
-function startTimer(duration, display) {
+function pauseTimer() {
+    if (!runtimeVariables.timerPaused) {
+        runtimeVariables.timerPaused = true;
+
+        timerDiv = document.getElementById('timer');
+        timerDiv.style.color = "red";
+        timerDiv.textContent = "Paused";
+    }
+}
+
+function resumeTimer() {
+    if (runtimeVariables.timerPaused) {
+        runtimeVariables.timerPaused = false;
+
+        timerDiv = document.getElementById('timer');
+        timerDiv.style.color = "white"
+        timerDiv.textContent = "00:00";
+    }
+
+}
+
+function startTimer(duration) {
+    timerDiv = document.getElementById('timer');
+
     var timer = duration, minutes, seconds;
 
     var interval = setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+        console.log(`Timer: ${runtimeVariables.timerPaused}`)
 
-        display.textContent = minutes + ":" + seconds;
-
-        if (--timer < 0) {
-            clearInterval(interval);
-            display.textContent = "Time's up!";
+        if(!runtimeVariables.timerPaused) {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+    
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+    
+            timerDiv.textContent = minutes + ":" + seconds;
+    
+            if (--timer < 0) {
+                clearInterval(interval);
+                goToCheckout(false)
+            }
         }
-
     }, 1000);
 }
 
 
 function goToCategory(categoryName, color) {
+    resumeTimer()
     fillItemTable(categoryName, color)
     document.getElementById('item-page').style.display = 'flex'
     document.getElementById('checkout-page').style.display = 'none'
@@ -679,6 +712,7 @@ function goToCategory(categoryName, color) {
 }
 
 function goToIndex() {
+    resumeTimer()
     hideImage()
     document.getElementById('category-page').style.display = 'flex'
     document.getElementById('checkout-page').style.display = 'none'
@@ -687,12 +721,17 @@ function goToIndex() {
     document.getElementById('back-arrow-button').style.visibility = 'hidden'
 }
 
-function goToCheckout() {
+function goToCheckout(showBackButton = true) {
+    pauseTimer()
     hideImage()
     document.getElementById('checkout-page').style.display = 'flex'
     document.getElementById('item-page').style.display = 'none'
     document.getElementById('category-page').style.display = 'none'
-    document.getElementById('back-arrow-button').style.visibility = 'visible'
+    if(showBackButton) {
+        document.getElementById('back-arrow-button').style.visibility = 'visible'
+    }
+
+
 }
 
 
@@ -749,7 +788,6 @@ function colorBasedOnOrder(categoryName) {
 }
 
 
-uncovered = []
 
 function setDivImage(div, pathToImage) {
     url =`url("${pathToImage}")`
@@ -803,7 +841,7 @@ function fillItemTable(categoryName, color) {
                     return () => showItem(pathToImage_arg, squareID_arg, price_arg, itemCell_arg);
                 }(pathToImage, squareUniquePath, price, itemCell);
 
-                if (uncovered.includes(squareUniquePath)) {
+                if (runtimeVariables.uncovered.includes(squareUniquePath)) {
                     setDivImage(itemCell, pathToImage)
                 }
                 itemCell.onmouseover = function () {
@@ -837,9 +875,9 @@ function showItem(pathToImage, squareUniquePath, priceVal, itemCell) {
     var overlay = document.querySelector('.overlay');
     var overlay = document.querySelector('.overlay');
 
-    if (!(squareUniquePath in uncovered)) {
+    if (!(squareUniquePath in runtimeVariables.uncovered)) {
         setDivImage(itemCell, pathToImage)
-        uncovered.push(squareUniquePath);
+        runtimeVariables.uncovered.push(squareUniquePath);
     }
 
     priceValString = toPoundString(priceVal);

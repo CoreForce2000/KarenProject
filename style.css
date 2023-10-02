@@ -9,6 +9,8 @@
     --darkblue:#131921;
     --orange:#FEBD69;
 
+    --red: #f44336;
+
     --shop-height: 88vh;
 }
 div {
@@ -27,6 +29,8 @@ table {
 .button:hover {
     background-color: var(--blue);
 }
+
+
 
 img {
     border: none;
@@ -252,41 +256,15 @@ body {
         
         
         
-        
-
-
-
-
-
-
-
-  
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .category-box {
     border: 1px solid black;
-    width: 200px;
-    height: 200px;
+    width: 26vw;
+    height: 26vw;
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
     padding: 2px;
-    border-radius: 8px;
+    border-radius:20px
 
 }
 .item-box {
@@ -356,17 +334,29 @@ body {
         font-weight: bold;
         margin-bottom: 20px;
     }
-    #purchase-button {
-        background-color: var(--orange);
+
+    .popup-button {
+        cursor: pointer;
         color: black;
         width: 50%;
         font-size: 25px;
         height: 30%;
         margin-top: 63px;
-        /* height: 30px; */
+    }
 
+    .popup-button:hover {
+        background-color: var(--blue);
     }
+    
+
+    #purchase-button {
+        background-color: var(--orange);
+    }
+
     #back-button {
-        background-color: #f44336;
-        color: white;
+        background-color: var(--red);
     }
+
+    
+
+
