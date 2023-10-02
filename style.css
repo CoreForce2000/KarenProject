@@ -8,6 +8,8 @@
     
     --darkblue:#131921;
     --orange:#FEBD69;
+
+    --shop-height: 88vh;
 }
 div {
     font-size: 25px;
@@ -24,6 +26,10 @@ table {
 }
 .button:hover {
     background-color: var(--blue);
+}
+
+img {
+    border: none;
 }
 
 
@@ -197,7 +203,7 @@ body {
             width:100%;
             display: flex;
             justify-content: center;
-            height:88vh;
+            height:var(--shop-height);
             overflow:auto;
         }
             #item-page {
@@ -272,7 +278,6 @@ body {
 
 
 
-
 .category-box {
     border: 1px solid black;
     width: 200px;
@@ -285,15 +290,13 @@ body {
 
 }
 .item-box {
-    border: 1px solid lightgray;
+    border: 0px none black;
     width: 26vw;
     height: 26vw;
-    text-align: center;
-    vertical-align: middle;
     cursor: pointer;
-    padding: 2px;
-    border-radius: 8px;
+    border-radius: 20px;
 }
+
 
 .category-box:hover {
     background-color: var(--blue);
@@ -367,16 +370,3 @@ body {
         background-color: #f44336;
         color: white;
     }
-
-    #price-div {
-        display: flex;
-        justify-content: center;
-        width: 50%;
-    }
-
-
-
-
-
-
-

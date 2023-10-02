@@ -252,7 +252,7 @@ const itemPriceRanges = {
     }
 }
 
-const pathToCategories = 'assets/categories/'
+const pathToCategories = './assets/categories/'
 
 
 const existingCategories = [
@@ -466,13 +466,12 @@ const amazonColors = {
 
 box_style = ""
     + "box-shadow:1px 1px 5px 1px lightgrey;"
-    + "background-image: url('https://www.transparenttextures.com/patterns/45-degree-fabric-light.png');"
-    + "background-size: cover;"
-    + "border: 0px none black;"
+    + "border:solid 0px black;"
     + "margin: 10px;"
     + "width: 10vw;"
     + "height: 10vw;"
     + "font-size: 1.5vw;"
+    + "background-color:" + govColors.lightgrey + ";"
 
 
 //////////////////////////////////////////////////////////////////////////////////////// 
@@ -517,7 +516,7 @@ function toPoundString(number) {
 
 
 window.onload = function () {
-    // switchToSlides()
+    switchToSlides()
 
     goToIndex()
     fillCategoryTable()
@@ -604,6 +603,7 @@ function saveInput(inputID, varName) {
 function nextSlide() {
     showSlide(currentSlide + 1);
 
+    console.log(currentSlide)
     if (currentSlide == 1) {
         showInput("text-input")
     }
@@ -664,6 +664,8 @@ function startTimer(duration, display) {
             clearInterval(interval);
             display.textContent = "Time's up!";
         }
+
+        console.log(duration);
 
     }, 1000);
 }
@@ -745,17 +747,12 @@ function colorBasedOnOrder(categoryName) {
         category_color_dict[categoryName] = colorPalette[color_counter];
     }
     color_counter++;
+    console.log(category_color_dict)
     return category_color_dict[categoryName]
 }
 
 
 uncovered = []
-
-function setDivImage(div, pathToImage) {
-    url =`url("${pathToImage}")`
-    div.style.backgroundImage = url;
-}
-
 
 function fillItemTable(categoryName, color) {
     //get divs
@@ -788,23 +785,24 @@ function fillItemTable(categoryName, color) {
 
             try {
                 var imgNumber = i * 7 - 6 + g;
-                var squareUniquePath = pathTemp + i + g;
+                var img = pathTemp + getImageName(categoryNameTemp, imgNumber);
 
-                var pathToImage = pathTemp + getImageName(categoryNameTemp, imgNumber);
+                var squareID = pathTemp + i + g;
                 var price = itemPriceRanges[categoryNameTemp][getImageExcelName(categoryNameTemp, imgNumber)]["maximum"];
 
                 var itemCell = row.insertCell();
                 itemCell.className = "item-box";
-                itemCell.id = "item-box-" + imgNumber
+                itemCell.id = "item-box"
 
-                itemCell.style = box_style + `background-color:${backgroundColor};`
+                itemCell.style = box_style + `background-color:${backgroundColor};` + "font-size:30px;";
 
-                itemCell.onclick = function (pathToImage_arg, squareID_arg, price_arg, itemCell_arg) {
-                    return () => showItem(pathToImage_arg, squareID_arg, price_arg, itemCell_arg);
-                }(pathToImage, squareUniquePath, price, itemCell);
+                var imageElement = document.createElement("img");
+                itemCell.onclick = function (img_arg, squareID_arg, price_arg, imageElement_arg, itemCell_arg) {
+                    return () => showItem(img_arg, squareID_arg, price_arg, imageElement_arg, itemCell_arg);
+                }(img, squareID, price, imageElement, itemCell);
 
-                if (uncovered.includes(squareUniquePath)) {
-                    setDivImage(itemCell, pathToImage)
+                if (uncovered.includes(squareID)) {
+                    imageElement.src = img;
                 }
                 itemCell.onmouseover = function () {
                     this.style.backgroundColor = govColors.blue;
@@ -813,6 +811,17 @@ function fillItemTable(categoryName, color) {
                     this.style.backgroundColor = backgroundColor;
                 }
 
+                // imageElement.src = img;
+                imageElement.style.width = "100%";
+                imageElement.style.height = "100%";
+                imageElement.style.display = "block";
+                imageElement.style.margin = "auto";
+                imageElement.style.border = "0px none black";
+
+
+                // imageElement.style.filter = "blur(7px)";
+
+                itemCell.appendChild(imageElement);
             }
             catch (err) {
                 console.log(err)
@@ -828,30 +837,31 @@ function fillItemTable(categoryName, color) {
 
 // Show / Hide Item
 
-
-function showItem(pathToImage, squareUniquePath, priceVal, itemCell) {
+function showItem(imageSrc, squareID, priceVal, imageElement, itemCell) {
 
     var popup = document.querySelector('.popup');
     var popupImage = document.querySelector('#popup-image');
+    var price = document.querySelector('#item-price');
     var purchaseButton = document.querySelector('#purchase-button');
     var overlay = document.querySelector('.overlay');
-    var overlay = document.querySelector('.overlay');
 
-    if (!(squareUniquePath in uncovered)) {
-        setDivImage(itemCell, pathToImage)
-        uncovered.push(squareUniquePath);
+    if (!(squareID in uncovered)) {
+        imageElement.src = imageSrc;
+        uncovered.push(squareID);
     }
 
     priceValString = toPoundString(priceVal);
 
-    popupImage.src = pathToImage;
+    itemCell.style.backgroundColor = "white";
+    popupImage.src = imageSrc;
+    price.innerHTML = priceValString;
 
     popup.style.display = 'block';
     overlay.style.display = 'block';
 
-    purchaseButton.onclick = function (pathToImage_arg, price_arg) {
-        return () => purchase(pathToImage_arg, price_arg);
-    }(pathToImage, priceVal);
+    purchaseButton.onclick = function (img_arg, price_arg) {
+        return () => purchase(img_arg, price_arg);
+    }(imageSrc, priceVal);
 
     overlay.onclick = function () {
         hideImage()
