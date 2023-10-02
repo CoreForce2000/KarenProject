@@ -151,7 +151,7 @@ body {
 /* Topbar */
 .topbar {
     display: flex;
-    vertical-align: center;
+    align-items: center;
     justify-content: space-between;
     padding: 10px;
     background-color: var(--darkblue);
