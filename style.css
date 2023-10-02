@@ -169,6 +169,7 @@ body {
 #topbar-icons {
     display: flex;
     justify-content: space-between;
+    width:80%;
 }
 
 #total-price-text {
