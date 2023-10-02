@@ -146,13 +146,16 @@ body {
     overflow: hidden;
     padding: 0px;
     margin: 0px;
+    
+    padding-left: var(--shop-margin-sides);
+    padding-right: var(--shop-margin-sides);
 }
 
 /* Topbar */
 .topbar {
     display: flex;
-    vertical-align: center;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
     padding: 10px;
     background-color: var(--darkblue);
 }
@@ -169,8 +172,8 @@ body {
     justify-content: space-between;
     width: 80%; 
     
-    margin-left: var(--shop-margin-sides);
-    margin-right: var(--shop-margin-sides);
+    /* margin-left: var(--shop-margin-sides);
+    margin-right: var(--shop-margin-sides); */
 }
 
 #total-price-text {
