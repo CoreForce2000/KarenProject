@@ -167,9 +167,7 @@ body {
 #topbar-icons {
     display: flex;
     justify-content: space-between;
-    margin-left: var(--shop-margin-sides);
-    margin-right: var(--shop-margin-sides);
-    width: 100%;
+    width: 80%; 
 }
 
 #total-price-text {
