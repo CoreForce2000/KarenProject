@@ -168,6 +168,8 @@ body {
     display: flex;
     justify-content: space-between;
     width: 80%;
+    padding-left: var(--shop-margin-sides);
+    padding-right: var(--shop-margin-sides);
 }
 
 #total-price-text {
