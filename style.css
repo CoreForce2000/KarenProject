@@ -152,8 +152,10 @@ body {
 .topbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 10px;
+    padding-left: var(--shop-margin-sides);
+    padding-right: var(--shop-margin-sides);
     background-color: var(--darkblue);
 }
 
@@ -167,8 +169,6 @@ body {
 #topbar-icons {
     display: flex;
     justify-content: space-between;
-    padding-left: var(--shop-margin-sides);
-    padding-right: var(--shop-margin-sides);
 }
 
 #total-price-text {
