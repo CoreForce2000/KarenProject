@@ -524,10 +524,6 @@ window.onload = function () {
     initEventLogger()
 };
 
-function submitInput() {
-    document.getElementById("input-box").style.display = "none";
-    document.getElementById("white-slide").style.display = "none";
-}
 
 
 function initEventLogger() {
@@ -559,7 +555,14 @@ function logElementInteraction(event) {
 // 
 //////////////////////////////////////////////////////////////////////////////////////// 
 
-var currentSlide = 0;
+function submitInput() {
+    document.getElementById("input-box").style.display = "none";
+    document.getElementById("white-slide").style.display = "none";
+    nextSlide();
+}
+
+
+var currentSlide = 9;
 var slides = document.querySelectorAll('.slide');
 var nextButton = document.getElementById('next-button');
 
@@ -569,19 +572,8 @@ function switchToSlides() {
 }
 
 
-
-document.addEventListener("keydown", function (event) {
-    if (event.keyCode === 13) { // 13 is the key code for enter
-        var image = document.getElementById("cover-slide");
-        image.parentNode.removeChild(image);
-        nextSlide();
-    }
-})
-
-
-function showSlide(n) {
+function showSlide() {
     slides[currentSlide].style.display = 'none';
-    currentSlide = (n + slides.length) % slides.length;
     slides[currentSlide].style.display = 'block';
 }
 
@@ -601,26 +593,34 @@ function saveInput(inputID, varName) {
 
 
 function nextSlide() {
-    showSlide(currentSlide + 1);
+    showSlide();
+    currentSlide = currentSlide + 1;
 
     if (currentSlide == 1) {
+        
+    }
+
+    if (currentSlide == 2) {
         showInput("text-input")
     }
-    if (currentSlide == 2) {
+    if (currentSlide == 3) {
         saveInput("text-input", "question1_drug")
         hideInput("text-input")
         showInput("range-slider")
     }
-    if (currentSlide == 3) {
+    if (currentSlide == 4) {
         saveInput("range-slider", "question2_craving")
     }
-    if (currentSlide == 4) {
+    if (currentSlide == 5) {
         saveInput("range-slider", "question3_craving_group")
         hideInput("range-slider")
     }
-    if (currentSlide == 7) {
+    if (currentSlide == 10) {
+        document.getElementById("white-slide").style.display = "none";
         switchToShop()
     }
+
+
 }
 
 

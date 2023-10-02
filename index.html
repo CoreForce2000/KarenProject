@@ -12,74 +12,76 @@
     <!-- Input Box -->
     <!-- Input Box -->
     <!-- Input Box -->
+    <div id="input-view">
+        <div id="input-box">
 
-    <div id="input-box">
-
-        <img src="assets/logo.jpg" style="width: 100%; margin-bottom: 20px;">
-
-        <div style="font-family: Calibri; display: flex; width: 100%; justify-content: space-between;"> Participant ID
-            <input id="id" autocomplete="false" type="text" maxlength="4" placeholder=""
-                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                style="width:70px; height:24px" required />
-        </div><br />
-
-
-        <fieldset style="border-color:rgb(247, 245, 245); box-shadow:0 0 0px">
-            <legend>Gender</legend>
-            <input type="radio" id="male" name="gender" value="male" required>
-            <label for="male">Male</label>
-            <input type="radio" id="female" name="gender" value="female">
-            <label for="female">Female</label><br>
-        </fieldset><br />
-
-        <fieldset style="border-color:rgb(247, 245, 245); box-shadow:0 0 0px ;display: flex;">
-            <legend>Group</legend>
-            <select id="group" style="height:24px">
-                <option value="control">Control</option>
-                <option value="crack">Crack</option>
-                <option value="cocaine">Cocaine</option>
-                <option value="heroin">Heroin</option>
-                <option value="cannabis">Cannabis</option>
-                <option value="alcohol">Alcohol</option>
-            </select>
-        </fieldset><br />
-
-        <fieldset style="border-color:rgb(247, 245, 245); box-shadow:0 0 0px ;display: flex;">
-            <legend>Age</legend>
-            <input id="age" autocomplete="false" type="number" maxlength="3" value="" style="height:24px;">
-        </fieldset><br />
-
-        <fieldset style="border-color:rgb(247, 245, 245); box-shadow:0 0 0px">
-            <legend>Handedness</legend>
-            <input type="radio" id="left" name="handedness" value="left" required>
-            <label for="left">Left</label>
-            <input type="radio" id="right" name="handedness" value="right">
-            <label for="right">Right</label><br>
-        </fieldset><br />
-
-        <hr style="height:1px;border:none;color:rgb(139, 139, 139);background-color:rgb(141, 141, 141)">
-        <br>
-        <div style="margin: auto; width:fit-content">
-
-            <input type="checkbox" id="useMouse">
-            <label for="vehicle2"> Use mouse </label><br>
-
-            <input type="checkbox" id="fullscreen" checked>
-            <label for="vehicle2"> Fullscreen </label><br>
-
-
-            <button type="submit" id="button" onclick="submitInput()" style="background-color: #4CAF50;
-                                    border: none;
-                                    color: white;
-                                    padding: 15px 32px;
-                                    text-align: center;
-                                    text-decoration: none;
-                                    display: inline-block;
-                                    font-size: 16px;
-                                    margin: 4px 2px;
-                                    cursor: pointer;">Run Task</button>
+            <img src="assets/logo.jpg" style="width: 100%; margin-bottom: 20px;">
+    
+            <div style="font-family: Calibri; display: flex; width: 100%; justify-content: space-between;"> Participant ID
+                <input id="id" autocomplete="false" type="text" maxlength="4" placeholder=""
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    style="width:70px; height:24px" required />
+            </div><br />
+    
+    
+            <fieldset style="border-color:rgb(247, 245, 245); box-shadow:0 0 0px">
+                <legend>Gender</legend>
+                <input type="radio" id="male" name="gender" value="male" required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label><br>
+            </fieldset><br />
+    
+            <fieldset style="border-color:rgb(247, 245, 245); box-shadow:0 0 0px ;display: flex;">
+                <legend>Group</legend>
+                <select id="group" style="height:24px">
+                    <option value="control">Control</option>
+                    <option value="crack">Crack</option>
+                    <option value="cocaine">Cocaine</option>
+                    <option value="heroin">Heroin</option>
+                    <option value="cannabis">Cannabis</option>
+                    <option value="alcohol">Alcohol</option>
+                </select>
+            </fieldset><br />
+    
+            <fieldset style="border-color:rgb(247, 245, 245); box-shadow:0 0 0px ;display: flex;">
+                <legend>Age</legend>
+                <input id="age" autocomplete="false" type="number" maxlength="3" value="" style="height:24px;">
+            </fieldset><br />
+    
+            <fieldset style="border-color:rgb(247, 245, 245); box-shadow:0 0 0px">
+                <legend>Handedness</legend>
+                <input type="radio" id="left" name="handedness" value="left" required>
+                <label for="left">Left</label>
+                <input type="radio" id="right" name="handedness" value="right">
+                <label for="right">Right</label><br>
+            </fieldset><br />
+    
+            <hr style="height:1px;border:none;color:rgb(139, 139, 139);background-color:rgb(141, 141, 141)">
+            <br>
+            <div style="margin: auto; width:fit-content">
+    
+                <input type="checkbox" id="useMouse">
+                <label for="vehicle2"> Use mouse </label><br>
+    
+                <input type="checkbox" id="fullscreen" checked>
+                <label for="vehicle2"> Fullscreen </label><br>
+    
+    
+                <button type="submit" id="button" onclick="submitInput()" style="background-color: #4CAF50;
+                                        border: none;
+                                        color: white;
+                                        padding: 15px 32px;
+                                        text-align: center;
+                                        text-decoration: none;
+                                        display: inline-block;
+                                        font-size: 16px;
+                                        margin: 4px 2px;
+                                        cursor: pointer;">Run Task</button>
+            </div>
         </div>
     </div>
+    
 
 
     <!-- TOPBAR (SHARED) -->
@@ -93,6 +95,7 @@
         <img src="assets/slides/phase1/Slide2.png" class="slide">
         <img src="assets/slides/phase1/Slide3.png" class="slide">
         <img src="assets/slides/phase1/Slide4.png" class="slide">
+        <img src="assets/slides/Cover.png" class="slide">
         <img src="assets/slides/phase1/Slide5.png" class="slide">
         <img src="assets/slides/phase1/Slide6.png" class="slide">
         <img src="assets/slides/phase1/Slide7.png" class="slide">
@@ -104,23 +107,20 @@
 
     </div>
 
-    <img id="cover-slide" src="assets/slides/Cover.png" class="slide">
     <img id="white-slide" src="assets/slides/White.png" class="slide">
 
     <div class="topbar">
-        <img class="button" id="back-arrow-button" onclick="goToIndex()" src="assets/arrow_white.png"></img>
 
-        <div id="timer">15:00</div>
-
-        <div id="price-and-cart-div">
+        <div id="topbar-icons">
             <div id="total-price-text">£<span id="total-price">1000</span></div>
+            <div id="timer">15:00</div>
             <img class="button" id="shopping-cart-button" onclick="goToCheckout()" src="assets/cart_white.png"></img>
         </div>
     </div>
 
 
     <div id="timer-bar"></div>
-
+    <img class="button" id="back-arrow-button" onclick="goToIndex()" src="assets/back_button.png"></img>
     <div id="shop-content">
 
         <!-- PAGES -->
@@ -128,6 +128,8 @@
         <!-- PAGES -->
         <!-- PAGES -->
         <!-- PAGES -->
+
+        
 
         <div class="page" id="category-page">
             <table id="category-table"></table>
@@ -142,6 +144,7 @@
                 <tr style="height: var(--shop-height)"></tr>
             </table>
         </div>
+
 
         <!-- ITEM TEMPLATES -->
         <!-- ITEM TEMPLATES -->
