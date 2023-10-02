@@ -151,11 +151,9 @@ body {
 /* Topbar */
 .topbar {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    vertical-align: center;
+    justify-content: space-between;
     padding: 10px;
-    padding-left: var(--shop-margin-sides);
-    padding-right: var(--shop-margin-sides);
     background-color: var(--darkblue);
 }
 
@@ -169,7 +167,9 @@ body {
 #topbar-icons {
     display: flex;
     justify-content: space-between;
-    width:80%;
+    margin-left: var(--shop-margin-sides);
+    margin-right: var(--shop-margin-sides);
+    width: 100%;
 }
 
 #total-price-text {
@@ -177,6 +177,7 @@ body {
     font-size: 30px;
     color: white;
     padding: 8px;
+    justify-content: center;
 }
 
 #shopping-cart-button {
@@ -214,7 +215,7 @@ body {
 }
 
 #checkout-table {
-    width: 100%;
+    width: 70%;
 }
 
 #cart-item {
