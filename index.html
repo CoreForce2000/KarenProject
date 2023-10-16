@@ -19,10 +19,9 @@
     
             <div style="font-family: Calibri; display: flex; width: 100%; justify-content: space-between;"> Participant ID
                 <input id="id" autocomplete="false" type="text" maxlength="4" placeholder=""
-                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    onkeypress="return isNumberKey(event)"
                     style="width:70px; height:24px" required />
             </div><br />
-    
     
             <fieldset style="border-color:rgb(247, 245, 245); box-shadow:0 0 0px">
                 <legend>Gender</legend>
@@ -46,7 +45,7 @@
     
             <fieldset style="border-color:rgb(247, 245, 245); box-shadow:0 0 0px ;display: flex;">
                 <legend>Age</legend>
-                <input id="age" autocomplete="false" type="number" maxlength="3" value="" style="height:24px;">
+                <input id="age" autocomplete="false" type="text" onkeypress="return isNumberKey(event)" maxlength="3"  value="" style="height:24px;">
             </fieldset><br />
     
             <fieldset style="border-color:rgb(247, 245, 245); box-shadow:0 0 0px">
@@ -60,12 +59,9 @@
             <hr style="height:1px;border:none;color:rgb(139, 139, 139);background-color:rgb(141, 141, 141)">
             <br>
             <div style="margin: auto; width:fit-content">
-    
-                <input type="checkbox" id="useMouse">
-                <label for="vehicle2"> Use mouse </label><br>
-    
-                <input type="checkbox" id="fullscreen" checked>
-                <label for="vehicle2"> Fullscreen </label><br>
+        
+                <!-- <input type="checkbox" id="fullscreen" checked>
+                <label for="vehicle2"> Fullscreen </label><br> -->
     
     
                 <button type="submit" id="button" onclick="submitInput()" style="background-color: #4CAF50;
@@ -91,6 +87,8 @@
     <!-- TOPBAR (SHARED) -->
 
     <div id="slideshow">
+        <img src="assets/slides/phase1/Slide1.png" class="slide">
+
         <img src="assets/slides/phase1/Slide1.png" class="slide">
         <img src="assets/slides/phase1/Slide2.png" class="slide">
         <img src="assets/slides/phase1/Slide3.png" class="slide">
@@ -121,25 +119,29 @@
 
         <div id="shop-column">
             <div id="topbar-icons">
-                <div style="width:200px; display:flex; justify-content: left;">
-                    <div id="total-price-text">£<span id="total-price">1000</span></div>
+                <div style="width:250px; display:flex; justify-content: left;">
+                    <div class="icon-text">Budget : £<span id="total-price">1000</span></div>
                 </div>
-                <div id="timer">15:00</div>
-                <div style="width:200px; display:flex; justify-content: right;">
+                <div class="icon-text">Timer :<span style="width:5px"></span><span id="timer">15:00</span></div>
+                <div style="width:250px; display:flex; justify-content: right;">
                     <img class="button" id="shopping-cart-button"
                      onclick="goToCheckout()" src="assets/cart_white.png"></img>
                 </div>
             </div>
     
             <img class="button" id="back-arrow-button" onclick="goToIndex()" 
-            src="assets/back_button.png"></img>
+                src="assets/back_button.png"></img>
             
-    
-            <table id="category-table"></table>
-            <table id="item-table"></table>
-            <table id="checkout-table">
-                <tr style="height: var(--shop-height)"></tr>
-            </table>
+            <div class="table-container" id="item-page">
+                <table id="item-table"></table></div>
+            <div class="table-container" id="checkout-page">
+                <table id="checkout-table">
+                    <!-- <tr style="height: var(--shop-height)"></tr> -->
+                </table>
+            </div>
+            <div class="table-container" id="category-page">
+                <table id="category-table"></table>
+            </div>            
         </div>
 
 

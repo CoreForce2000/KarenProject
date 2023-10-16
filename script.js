@@ -261,108 +261,113 @@ const existingCategories = [
 ]
 
 const nonDrugCategories = [
-    "Aftershaves",
-    "Kettles",
-    "Alarm clocks",
-    "Kitchen Aids",
-    "Badminton",
-    "Knife Sets",
-    "Bags Men",
-    "Lego adults",
-    "Barbie",
-    "Lego kids",
-    "Baskets",
-    "Lighters",
-    "Bathrobes",
-    "Make up",
-    "BBQ",
-    "Miniature cars",
-    "Binoculars",
-    "Mugs",
-    "Board Games",
-    "Navigators",
-    "Books Baking",
-    "Party Accessories",
-    "Books Biographies",
-    "Penknives",
-    "Books Cooking",
-    "Perfumes",
-    "Books Non-Fiction",
-    "Plants",
-    "Books Travel",
-    "Playmobil",
-    "Boxing",
-    "Puzzles",
-    "Camping Equipment",
-    "Rucksacks",
-    "Car Accessories",
-    "Rugby",
-    "Cat Accessories",
-    "Running",
-    "Chocolates",
-    "Saucepan Sets",
-    "Cleaning",
-    "Shavers",
-    "Coffee Machines",
-    "Sport Bags",
-    "Coffee Pots",
-    "Stationary",
-    "Computing Accessories",
-    "Storage",
-    "Cricket",
-    "Sunglasses Men",
-    "Cuddly Toys",
-    "Sunglasses Women",
-    "Cushions",
-    "Swatch Watches",
-    "Dinner Sets",
-    "Swimming",
-    "DIQ",
-    "Teapots",
-    "Dog Accessories",
-    "Tennis",
-    "Fishing",
-    "Toaster",
-    "Fitness",
-    "Tooth brush",
-    "Flowers",
-    "Towels",
-    "Football Merchandise",
-    "Toys Boys",
-    "Gaming",
-    "Toys Girls",
-    "Garden",
-    "Travel Bags",
-    "Gift Sets Men",
-    "Travel Mugs",
-    "Gift Sets Women",
-    "Trimmers",
-    "Glassware",
-    "Umbrellas",
-    "Golf",
-    "Vases",
-    "Hair Dryer",
-    "Video Games",
-    "Handbags",
-    "Wallets Men",
-    "Harley Davidson",
-    "Wallets Women",
-    "Headphones",
-    "Water Bottles",
-    "Jewellery",
-    "Webcams",
-    "Yoga"
+        "Aftershaves",
+        "Kettles",
+        "Alarm\nClocks",
+        "Kitchen\nAids",
+        "Badminton",
+        "Knife\nSets",
+        "Bags\nMen",
+        "Lego\nAdults",
+        "Barbie",
+        "Lego\nKids",
+        "Baskets",
+        "Lighters",
+        "Bathrobes",
+        "Make\nUp",
+        "Bbq",
+        "Miniature\nCars",
+        "Binoculars",
+        "Mugs",
+        "Board\nGames",
+        "Navigators",
+        "Books\nBaking",
+        "Party\nAccessories",
+        "Books\nBiographies",
+        "Penknives",
+        "Books\nCooking",
+        "Perfumes",
+        "Books\nNon-fiction",
+        "Plants",
+        "Books\nTravel",
+        "Playmobil",
+        "Boxing",
+        "Puzzles",
+        "Camping\nEquipment",
+        "Rucksacks",
+        "Car\nAccessories",
+        "Rugby",
+        "Cat\nAccessories",
+        "Running",
+        "Chocolates",
+        "Saucepan\nSets",
+        "Cleaning",
+        "Shavers",
+        "Coffee\nMachines",
+        "Sport\nBags",
+        "Coffee\nPots",
+        "Stationary",
+        "Computing\nAccessories",
+        "Storage",
+        "Cricket",
+        "Sunglasses\nMen",
+        "Cuddly\nToys",
+        "Sunglasses\nWomen",
+        "Cushions",
+        "Swatch\nWatches",
+        "Dinner\nSets",
+        "Swimming",
+        "Diq",
+        "Teapots",
+        "Dog\nAccessories",
+        "Tennis",
+        "Fishing",
+        "Toaster",
+        "Fitness",
+        "Tooth\nBrush",
+        "Flowers",
+        "Towels",
+        "Football\nMerchandise",
+        "Toys\nBoys",
+        "Gaming",
+        "Toys\nGirls",
+        "Garden",
+        "Travel\nBags",
+        "Gift-Sets\nMen",
+        "Travel\nMugs",
+        "Gift-Sets\nWomen",
+        "Trimmers",
+        "Glassware",
+        "Umbrellas",
+        "Golf",
+        "Vases",
+        "Hair\nDryer",
+        "Video\nGames",
+        "Handbags",
+        "Wallets\nMen",
+        "Harley\nDavidson",
+        "Wallets\nWomen",
+        "Headphones",
+        "Water\nBottles",
+        "Jewellery",
+        "Webcams",
+        "Yoga"
 ];
 
 const drugCategories = [
     "Cannabis",
-    "Cannabis products",
+    "Cannabis\nProducts",
     "Cigarettes",
     "Cigars",
-    "Cocaine",
-    "Crack",
     "Ecstasy",
     "Hashish",
+    "Hookah",
+    "Pipers",
+    "Rolling\nTobacco",
+    "Vapin"
+]
+
+const alcoholCategories = [
     "Alcopops",
     "Beer",
     "Brandy",
@@ -371,17 +376,20 @@ const drugCategories = [
     "Cocktails",
     "Gin",
     "Prosecco",
-    "Red wine",
-    "Rum",
-    "Heroin",
-    "Hookah",
-    "Pipers",
+    "Red\nWine",
     "Vodka",
-    "Rolling Tobacco",
+    "Rum",
     "Whisky",
-    "White wine",
-    "Vapin"
+    "White Wine",
 ]
+
+const initialScreenCategories = [
+    "Cocaine",
+    "Crack",
+    "Heroin",
+]
+
+
 
 const colorPalette = [
     "#FF6F61",
@@ -464,26 +472,11 @@ const amazonColors = {
 }
 
 
-box_style = ""
-    + "box-shadow:1px 1px 5px 1px lightgrey;"
-    + "background-image: url('https://www.transparenttextures.com/patterns/45-degree-fabric-light.png');"
-    + "background-size: cover;"
-    + "border: 0px none black;"
-    + "margin: 10px;"
-    + "width: 10vw;"
-    + "height: 10vw;"
-    + "font-size: 1.5vw;"
-    
-    +"text-align:center;"
-    +"cursor:pointer;"
-    +"border-radius: 10%;"
-
-
 //////////////////////////////////////////////////////////////////////////////////////// 
 // 
 // HELPER FUNCTIONS
 // 
-//////////////////////////////////////////////////////////////////////////////////////// 
+////////////////////////////////////////////////////////////////////////////////////////
 
 // use config imageNameFormat string and replace category and number with actual values
 function getImageName(category, number) {
@@ -506,6 +499,64 @@ function getExcelName(category) {
 function toPoundString(number) {
     return "£" + number.toString();
 }
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        // Generate a random index
+        const j = Math.floor(Math.random() * (i + 1));
+        
+        // Swap elements at i and j
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function pseudorandomize(nonDrugCategories, drugCategories, alcoholCategories, initialScreenCategories) {
+    let mixedList = [];
+    let totalLength = 300; // or any other number depending on how long you want the mixedList to be
+    
+    // combine arrays initialScreenCategoriesRand and drugCategoriesRand
+
+    let drugCounter = 0;
+    let alcoholCounter = 0;
+    let nonDrugCounter = 0;
+    
+    for (let i = 0; i < totalLength; i++) {
+
+        let drugAndInitialScreenCategoriesRand = shuffleArray(initialScreenCategories).concat(shuffleArray(drugCategories));
+        let alcoholCategoriesRand = shuffleArray(alcoholCategories);
+        let nonDrugCategoriesRand = shuffleArray(nonDrugCategories);
+
+        if (i % 6 === 0) {
+            if (drugCounter < drugAndInitialScreenCategoriesRand.length) {
+                mixedList.push(drugAndInitialScreenCategoriesRand[drugCounter++]);
+            }
+        }
+        
+        if (i % 6 === 2) {
+            if (alcoholCounter < alcoholCategoriesRand.length) {
+                mixedList.push(alcoholCategoriesRand[alcoholCounter++]);
+            }
+        }
+                
+        if (nonDrugCounter < nonDrugCategoriesRand.length) {
+            mixedList.push(nonDrugCategoriesRand[nonDrugCounter++]);
+        }
+        
+        // Reset counters when we've gone through all items in each category
+        if (drugCounter === drugAndInitialScreenCategoriesRand.length) drugCounter = 0;
+        if (alcoholCounter === alcoholCategoriesRand.length) alcoholCounter = 0;
+        if (nonDrugCounter === nonDrugCategoriesRand.length) nonDrugCounter = 0;
+    }
+    
+    return mixedList;
+}
+
+// Example usage:
+
+let mixedList = pseudorandomize(nonDrugCategories, drugCategories, alcoholCategories, initialScreenCategories);
+console.log(mixedList);
+
 
 
 
@@ -571,13 +622,13 @@ var slides = document.querySelectorAll('.slide');
 var nextButton = document.getElementById('next-button');
 
 function switchToSlides() {
-    document.getElementById('slideshow').style.display = 'initial'
+    document.getElementById('slideshow').style.display = 'block'
     document.getElementById('shop-content').style.display = 'none'
 }
 
 
 function showSlide() {
-    slides[currentSlide].style.display = 'none';
+    // slides[currentSlide].style.display = 'none';
     slides[currentSlide].style.display = 'block';
 }
 
@@ -632,7 +683,8 @@ function nextSlide() {
 
 var runtimeVariables = {
     timerPaused : false,
-    uncovered : []
+    uncovered : [],
+    categoriesClicked: []
 }
 
 
@@ -702,9 +754,9 @@ function startTimer(duration) {
 function goToCategory(categoryName, color) {
     resumeTimer()
     fillItemTable(categoryName, color)
-    document.getElementById('item-table').style.display = shop_display_property
-    document.getElementById('checkout-table').style.display = 'none'
-    document.getElementById('category-table').style.display = 'none'
+    document.getElementById('item-page').style.display = shop_display_property
+    document.getElementById('checkout-page').style.display = 'none'
+    document.getElementById('category-page').style.visibility = 'hidden'
 
     document.getElementById('back-arrow-button').style.visibility = 'visible'
 }
@@ -712,9 +764,9 @@ function goToCategory(categoryName, color) {
 function goToIndex() {
     resumeTimer()
     hideImage()
-    document.getElementById('category-table').style.display = shop_display_property
-    document.getElementById('checkout-table').style.display = 'none'
-    document.getElementById('item-table').style.display = 'none'
+    document.getElementById('category-page').style.visibility = "visible"
+    document.getElementById('checkout-page').style.display = 'none'
+    document.getElementById('item-page').style.display = 'none'
 
     document.getElementById('back-arrow-button').style.visibility = 'hidden'
 }
@@ -722,9 +774,9 @@ function goToIndex() {
 function goToCheckout(showBackButton = true) {
     pauseTimer()
     hideImage()
-    document.getElementById('checkout-table').style.display = shop_display_property
-    document.getElementById('item-table').style.display = 'none'
-    document.getElementById('category-table').style.display = 'none'
+    document.getElementById('checkout-page').style.display = 'block'
+    document.getElementById('item-page').style.display = 'none'
+    document.getElementById('category-page').style.visibility = 'hidden'
     if(showBackButton) {
         document.getElementById('back-arrow-button').style.visibility = 'visible'
     }
@@ -743,32 +795,55 @@ function fillCategoryTable() {
 
     // Loop through the lists and add rows to the table
 
+    var randomizedCategories = pseudorandomize(nonDrugCategories, drugCategories, alcoholCategories, initialScreenCategories);
+
     for (var m = 0; m < 10; m++) {
 
         i = 0
 
-        for (var f = 0; i < nonDrugCategories.length; f++) {
+        for (var f = 0; i < randomizedCategories.length; f++) {
             var row = tableBody.insertRow();
 
-            for (var g = 0; g < 7 && i < nonDrugCategories.length; g++, i++) {
+            for (var g = 0; g < 7 && i < randomizedCategories.length; g++, i++) {
 
                 var color = colorPalette[8]
+                var categoryTileNumber = i * 7 - 6 + g;
+                var categoryTileID = "category-box-"+categoryTileNumber;
 
                 var categoryCell = row.insertCell();
-                // categoryCell.setAttribute("class", "box")
-                categoryCell.textContent = nonDrugCategories[i]
-                categoryCell.className = "category-box"
-                categoryCell.id = "category-box"
-                categoryCell.style = box_style + `background-color:${color};` //`border-bottom:solid 7px ${color};` //
-                categoryCell.onclick = function (categoryName, color) {
-                    return () => goToCategory(categoryName, color)
-                }(nonDrugCategories[i], color)
+                categoryCell.setAttribute("id", categoryTileID)
+                categoryCell.textContent = randomizedCategories[i]
+                categoryCell.className = "box-style"
+                categoryCell.id = categoryTileID;
+                categoryCell.style.backgroundColor = color //`border-bottom:solid 7px ${color};` //
+                
+
+                // var beenClicked = ()=> categoryCell.style.backgroundColor = govColors.blue;
+
+                categoryCell.onclick = function (categoryName, color, categoryCell) {
+
+                    return () => {
+
+                        categoryCell
+                            .style.backgroundColor = "rgb(227, 110, 150)"
+
+                        categoryCell
+                            .style.textDecoration = "underline"
+
+                        goToCategory(categoryName, color);
+                    }
+                
+                }(randomizedCategories[i], color, categoryCell)
 
                 categoryCell.onmouseover = function () {
-                    this.style.backgroundColor = govColors.blue;
+                    if(this.style.backgroundColor == color){
+                        this.style.backgroundColor = govColors.blue;
+                    }
                 }
                 categoryCell.onmouseout = function () {
-                    this.style.backgroundColor = color;
+                    if(this.style.backgroundColor == govColors.blue){
+                        this.style.backgroundColor = color;
+                    }
                 }
             }
         }
@@ -828,10 +903,10 @@ function fillItemTable(categoryName, color) {
                 var price = itemPriceRanges[categoryNameTemp][getImageExcelName(categoryNameTemp, imgNumber)]["maximum"];
 
                 var itemCell = row.insertCell();
-                itemCell.className = "item-box";
+                itemCell.className = "box-style";
                 itemCell.id = "item-box-" + imgNumber
 
-                itemCell.style = box_style + `background-color:${backgroundColor};`
+                itemCell.style.backgroundColor = backgroundColor
 
                 itemCell.onclick = function (pathToImage_arg, squareID_arg, price_arg, itemCell_arg) {
                     return () => showItem(pathToImage_arg, squareID_arg, price_arg, itemCell_arg);
@@ -940,9 +1015,11 @@ function addItemToCart(imageSrc, priceVal) {
 
 
     var id = `item_${i}`;
+    var row_id = `checkout_row_${i}`;
 
     var newItem = document.createElement("div");
     cell.setAttribute("id", id);
+    row.setAttribute("id", row_id);
     newItem.className = "cart-item";
     // cell.id = "category-box";
     newItem.style.display = "flex"; // Set display property to flex
@@ -957,9 +1034,9 @@ function addItemToCart(imageSrc, priceVal) {
     newItem.appendChild(cartButton);
 
 
-    cartButton.onclick = function (cartItem, price, id) {
-        return () => removeItemFromCart(cartItem, price, id);
-    }(newItem, priceVal, id);
+    cartButton.onclick = function (cartItem, price, row_id) {
+        return () => removeItemFromCart(cartItem, price, row_id);
+    }(newItem, priceVal, row_id);
 
     newItem.appendChild(cartButton);
     cell.appendChild(newItem);
@@ -972,8 +1049,16 @@ function removeItemFromCart(cartItem, price, id) {
     changeTotalPriceBy(price)
 
     // cartItem.display="none"
-    document.getElementById(id).style.display = "none"
+    document.getElementById(id).remove();
 }
 
 
+
+function isNumberKey(evt) {
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
 
