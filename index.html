@@ -109,18 +109,8 @@
 
     <img id="white-slide" src="assets/slides/White.png" class="slide">
 
-    <div class="topbar">
+    <div id="topbar-background"></div>
 
-        <div id="topbar-icons">
-            <div id="total-price-text">£<span id="total-price">1000</span></div>
-            <div id="timer">15:00</div>
-            <img class="button" id="shopping-cart-button" onclick="goToCheckout()" src="assets/cart_white.png"></img>
-        </div>
-    </div>
-
-
-    <div id="timer-bar"></div>
-    <img class="button" id="back-arrow-button" onclick="goToIndex()" src="assets/back_button.png"></img>
     <div id="shop-content">
 
         <!-- PAGES -->
@@ -129,21 +119,29 @@
         <!-- PAGES -->
         <!-- PAGES -->
 
-        
-
-        <div class="page" id="category-page">
+        <div id="shop-column">
+            <div id="topbar-icons">
+                <div style="width:200px; display:flex; justify-content: left;">
+                    <div id="total-price-text">£<span id="total-price">1000</span></div>
+                </div>
+                <div id="timer">15:00</div>
+                <div style="width:200px; display:flex; justify-content: right;">
+                    <img class="button" id="shopping-cart-button"
+                     onclick="goToCheckout()" src="assets/cart_white.png"></img>
+                </div>
+            </div>
+    
+            <img class="button" id="back-arrow-button" onclick="goToIndex()" 
+            src="assets/back_button.png"></img>
+            
+    
             <table id="category-table"></table>
-        </div>
-
-        <div class="page" id="item-page">
             <table id="item-table"></table>
-        </div>
-
-        <div class="page" id="checkout-page">
             <table id="checkout-table">
                 <tr style="height: var(--shop-height)"></tr>
             </table>
         </div>
+
 
 
         <!-- ITEM TEMPLATES -->

@@ -11,7 +11,15 @@
     --red: #f44336;
 
     --shop-height: 88vh;
-    --shop-margin-sides: 240px;
+
+    --topbar-height: 70px;
+    --topbar-border-width:15px;
+
+    --border-spacing: 10px;
+
+    --width-boxes: 10vw;
+
+    --shopping-item-width: calc(7 * var(--width-boxes) + 8 * var(--border-spacing));
 }
 
 div {
@@ -21,7 +29,8 @@ div {
 
 table {
     border-collapse: separate;
-    border-spacing: 10px;
+    border-spacing: var(--border-spacing);
+    padding:0;
 }
 
 .button {
@@ -146,9 +155,6 @@ body {
     overflow: hidden;
     padding: 0px;
     margin: 0px;
-    
-    padding-left: var(--shop-margin-sides);
-    padding-right: var(--shop-margin-sides);
 }
 
 /* Topbar */
@@ -157,23 +163,48 @@ body {
     align-items: center;
     justify-content: center;
     padding: 10px;
-    background-color: var(--darkblue);
 }
 
+
+#topbar-background {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100vw;
+    height:var(--topbar-height);
+    background-color: var(--darkblue);
+    border-bottom: var(--topbar-border-width) solid var(--orange);
+    z-index: -10;
+}
+
+
 #back-arrow-button {
-    width: auto;
-    height: 30px;
+    height: auto;
+    width:100px;
+    margin-left:var(--border-spacing);
     visibility: hidden;
-    margin-left: var(--shop-margin-sides);
+    padding:5px;
+    padding-left:0px;
+}
+
+#shop-content {
+    display:flex;
+    justify-content: center;
+    width:100%;
+}
+
+#shop-column {
+    display:inline-flex;
+    width:max-content;
+    flex-direction: column;
+    padding:10px;
 }
 
 #topbar-icons {
     display: flex;
+    height: var(--topbar-height);
+    margin-bottom: var(--topbar-border-width);
     justify-content: space-between;
-    width: 80%; 
-    
-    /* margin-left: var(--shop-margin-sides);
-    margin-right: var(--shop-margin-sides); */
 }
 
 #total-price-text {
@@ -189,14 +220,6 @@ body {
     height: 30px;
 }
 
-
-
-
-#shop-content {
-    display: flex;
-    justify-content: center;
-    overflow: auto;
-}
 
 /* Page */
 .page {
@@ -223,9 +246,22 @@ body {
 }
 
 #cart-item {
-    display: none;
-    width: 100%;
+    display:none;
 }
+
+.cart-item {
+
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    width: var(--shopping-item-width);
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    /* border: 1px solid black; */
+}
+
 
 #cart-item-image {
     width: 100px;
@@ -247,16 +283,16 @@ body {
 
 
 
-
+/* 
 
 .category-box {
     border: 1px solid black;
-    width: 26vw;
-    height: 26vw;
+    width: 13%;
+    height: 13%;
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
-    border-radius: 20px
+    border-radius: 5%
 }
 
 .item-box {
@@ -265,6 +301,21 @@ body {
     height: 26vw;
     cursor: pointer;
     border-radius: 20px;
+} */
+
+
+.box-style {
+    box-shadow: 1px 1px 5px 1px lightgrey;
+    background-image: url('https://www.transparenttextures.com/patterns/45-degree-fabric-light.png');
+    background-size: cover;
+    border: 0px none black;
+    margin: 10px;
+    width: 10vw;
+    height: 10vw;
+    font-size: 1.5vw;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10%;
 }
 
 
@@ -280,19 +331,8 @@ body {
     color: white;
     text-align: center;
     height: 10px;
-    width: 100%;
-}
-
-#timer-bar {
-    width: 100%;
-    height: 20px;
-    background-color: var(--orange);
-}
-
-#timer {
     font-size: 48px;
 }
-
 
 
 .popup {

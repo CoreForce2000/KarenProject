@@ -473,6 +473,10 @@ box_style = ""
     + "width: 10vw;"
     + "height: 10vw;"
     + "font-size: 1.5vw;"
+    
+    +"text-align:center;"
+    +"cursor:pointer;"
+    +"border-radius: 10%;"
 
 
 //////////////////////////////////////////////////////////////////////////////////////// 
@@ -567,7 +571,7 @@ var slides = document.querySelectorAll('.slide');
 var nextButton = document.getElementById('next-button');
 
 function switchToSlides() {
-    document.getElementById('slideshow').style.display = 'flex'
+    document.getElementById('slideshow').style.display = 'initial'
     document.getElementById('shop-content').style.display = 'none'
 }
 
@@ -640,9 +644,11 @@ var runtimeVariables = {
 // 
 //////////////////////////////////////////////////////////////////////////////////////// 
 
+shop_display_property = 'inline-flex'
+
 
 function switchToShop() {
-    document.getElementById('shop-content').style.display = 'flex'
+    document.getElementById('shop-content').style.display = shop_display_property
     document.getElementById('slideshow').style.display = 'none'
     document.getElementById('next-button').style.display = 'none'
 
@@ -656,20 +662,12 @@ if (sessionStorage.getItem("counter") === null) {
 function pauseTimer() {
     if (!runtimeVariables.timerPaused) {
         runtimeVariables.timerPaused = true;
-
-        timerDiv = document.getElementById('timer');
-        timerDiv.style.color = "red";
-        timerDiv.textContent = "Paused";
     }
 }
 
 function resumeTimer() {
     if (runtimeVariables.timerPaused) {
         runtimeVariables.timerPaused = false;
-
-        timerDiv = document.getElementById('timer');
-        timerDiv.style.color = "white"
-        timerDiv.textContent = "00:00";
     }
 
 }
@@ -704,9 +702,9 @@ function startTimer(duration) {
 function goToCategory(categoryName, color) {
     resumeTimer()
     fillItemTable(categoryName, color)
-    document.getElementById('item-page').style.display = 'flex'
-    document.getElementById('checkout-page').style.display = 'none'
-    document.getElementById('category-page').style.display = 'none'
+    document.getElementById('item-table').style.display = shop_display_property
+    document.getElementById('checkout-table').style.display = 'none'
+    document.getElementById('category-table').style.display = 'none'
 
     document.getElementById('back-arrow-button').style.visibility = 'visible'
 }
@@ -714,9 +712,9 @@ function goToCategory(categoryName, color) {
 function goToIndex() {
     resumeTimer()
     hideImage()
-    document.getElementById('category-page').style.display = 'flex'
-    document.getElementById('checkout-page').style.display = 'none'
-    document.getElementById('item-page').style.display = 'none'
+    document.getElementById('category-table').style.display = shop_display_property
+    document.getElementById('checkout-table').style.display = 'none'
+    document.getElementById('item-table').style.display = 'none'
 
     document.getElementById('back-arrow-button').style.visibility = 'hidden'
 }
@@ -724,9 +722,9 @@ function goToIndex() {
 function goToCheckout(showBackButton = true) {
     pauseTimer()
     hideImage()
-    document.getElementById('checkout-page').style.display = 'flex'
-    document.getElementById('item-page').style.display = 'none'
-    document.getElementById('category-page').style.display = 'none'
+    document.getElementById('checkout-table').style.display = shop_display_property
+    document.getElementById('item-table').style.display = 'none'
+    document.getElementById('category-table').style.display = 'none'
     if(showBackButton) {
         document.getElementById('back-arrow-button').style.visibility = 'visible'
     }
@@ -798,7 +796,6 @@ function setDivImage(div, pathToImage) {
 function fillItemTable(categoryName, color) {
     //get divs
     var table = document.querySelector("#item-table");
-    var stripe = document.querySelector('#item-page')
 
     while (table.firstChild) {
         table.removeChild(table.firstChild); // remove all child elements 
@@ -814,7 +811,6 @@ function fillItemTable(categoryName, color) {
 
     //get correct colors
     backgroundColor = colorBasedOnOrder(categoryName)
-    stripe.style.backgroundColor = `linear-gradient(to bottom right, ${color}, #000000);`
 
 
     // Loop through the lists and add rows to the table
@@ -947,12 +943,14 @@ function addItemToCart(imageSrc, priceVal) {
 
     var newItem = document.createElement("div");
     cell.setAttribute("id", id);
+    newItem.className = "cart-item";
+    // cell.id = "category-box";
     newItem.style.display = "flex"; // Set display property to flex
-    newItem.style.justifyContent = "space-between"; // Space items evenly along the horizontal axis
-    newItem.style.alignItems = "center"; // Align items vertically in the center
-    newItem.style.padding = "10px";
-    newItem.style.backgroundColor = "azure";
-    newItem.style.border = "1px solid black";
+    // newItem.style.justifyContent = "space-between"; // Space items evenly along the horizontal axis
+    // newItem.style.alignItems = "center"; // Align items vertically in the center
+    // newItem.style.padding = "10px";
+    // newItem.style.backgroundColor = "azure";
+    // newItem.style.border = "1px solid black";
 
     newItem.appendChild(cartItemImage);
     newItem.appendChild(cartItemPrice);
