@@ -368,7 +368,8 @@ body {
     width: 400px;
     height: 400px;
     margin-right: 20px;
-    object-fit: cover;
+    background-color: white;
+    object-fit:contain;
 }
 
 #item-price {
