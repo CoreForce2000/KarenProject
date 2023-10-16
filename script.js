@@ -520,12 +520,14 @@ function pseudorandomize(nonDrugCategories, drugCategories, alcoholCategories, i
     let drugCounter = 0;
     let alcoholCounter = 0;
     let nonDrugCounter = 0;
+
+    
+    let drugAndInitialScreenCategoriesRand = shuffleArray(initialScreenCategories).concat(shuffleArray(drugCategories));
+    let alcoholCategoriesRand = shuffleArray(alcoholCategories);
+    let nonDrugCategoriesRand = shuffleArray(nonDrugCategories);
     
     for (let i = 0; i < totalLength; i++) {
 
-        let drugAndInitialScreenCategoriesRand = shuffleArray(initialScreenCategories).concat(shuffleArray(drugCategories));
-        let alcoholCategoriesRand = shuffleArray(alcoholCategories);
-        let nonDrugCategoriesRand = shuffleArray(nonDrugCategories);
 
         if (i % 6 === 0) {
             if (drugCounter < drugAndInitialScreenCategoriesRand.length) {
@@ -544,9 +546,23 @@ function pseudorandomize(nonDrugCategories, drugCategories, alcoholCategories, i
         }
         
         // Reset counters when we've gone through all items in each category
-        if (drugCounter === drugAndInitialScreenCategoriesRand.length) drugCounter = 0;
-        if (alcoholCounter === alcoholCategoriesRand.length) alcoholCounter = 0;
-        if (nonDrugCounter === nonDrugCategoriesRand.length) nonDrugCounter = 0;
+        if (drugCounter === drugAndInitialScreenCategoriesRand.length) {
+            
+            drugAndInitialScreenCategoriesRand = shuffleArray(initialScreenCategories).concat(shuffleArray(drugCategories));
+            drugCounter = 0;
+        }
+        if (alcoholCounter === alcoholCategoriesRand.length){
+
+            alcoholCategoriesRand = shuffleArray(alcoholCategories);
+            alcoholCounter = 0;
+
+        } 
+        if (nonDrugCounter === nonDrugCategoriesRand.length){
+
+            nonDrugCategoriesRand = shuffleArray(nonDrugCategories);
+            nonDrugCounter = 0;
+
+        } 
     }
     
     return mixedList;
@@ -890,43 +906,47 @@ function fillItemTable(categoryName, color) {
 
     // Loop through the lists and add rows to the table
 
-    for (var i = 1; i < 7; i++) {
-        var row = table.insertRow();
+    for (var m = 0; m < 10; m++) {
 
-        for (var g = 0; g < 7; g++) {
+        for (var i = 1; i < 7; i++) {
+            var row = table.insertRow();
 
-            try {
-                var imgNumber = i * 7 - 6 + g;
-                var squareUniquePath = pathTemp + i + g;
+            for (var g = 0; g < 7; g++) {
 
-                var pathToImage = pathTemp + getImageName(categoryNameTemp, imgNumber);
-                var price = itemPriceRanges[categoryNameTemp][getImageExcelName(categoryNameTemp, imgNumber)]["maximum"];
+                try {
+                    var imgNumber = (i * 7 - 6 + g) % (Object.keys(itemPriceRanges[categoryNameTemp]).length-1) +1;
+                    var squareUniquePath = pathTemp + i + g;
 
-                var itemCell = row.insertCell();
-                itemCell.className = "box-style";
-                itemCell.id = "item-box-" + imgNumber
+                    var pathToImage = pathTemp + getImageName(categoryNameTemp, imgNumber);
+                    var price = itemPriceRanges[categoryNameTemp][getImageExcelName(categoryNameTemp, imgNumber)]["maximum"];
 
-                itemCell.style.backgroundColor = backgroundColor
+                    var itemCell = row.insertCell();
+                    itemCell.className = "box-style";
+                    itemCell.id = "item-box-" + imgNumber
 
-                itemCell.onclick = function (pathToImage_arg, squareID_arg, price_arg, itemCell_arg) {
-                    return () => showItem(pathToImage_arg, squareID_arg, price_arg, itemCell_arg);
-                }(pathToImage, squareUniquePath, price, itemCell);
+                    itemCell.style.backgroundColor = backgroundColor
 
-                if (runtimeVariables.uncovered.includes(squareUniquePath)) {
-                    setDivImage(itemCell, pathToImage)
+                    itemCell.onclick = function (pathToImage_arg, squareID_arg, price_arg, itemCell_arg) {
+                        return () => showItem(pathToImage_arg, squareID_arg, price_arg, itemCell_arg);
+                    }(pathToImage, squareUniquePath, price, itemCell);
+
+                    if (runtimeVariables.uncovered.includes(squareUniquePath)) {
+                        setDivImage(itemCell, pathToImage)
+                    }
+                    itemCell.onmouseover = function () {
+                        this.style.backgroundColor = govColors.blue;
+                    }
+                    itemCell.onmouseout = function () {
+                        this.style.backgroundColor = backgroundColor;
+                    }
+
+
                 }
-                itemCell.onmouseover = function () {
-                    this.style.backgroundColor = govColors.blue;
-                }
-                itemCell.onmouseout = function () {
-                    this.style.backgroundColor = backgroundColor;
+                catch (err) {
+                    console.log(err)
                 }
 
             }
-            catch (err) {
-                console.log(err)
-            }
-
         }
     }
 

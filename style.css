@@ -38,6 +38,7 @@ table {
 .table-container {
     height: var(--shop-height);
     overflow-y:auto;
+    margin-top:10px;
 }
 
 #checkout-table {
