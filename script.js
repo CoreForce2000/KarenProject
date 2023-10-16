@@ -836,6 +836,7 @@ function fillCategoryTable() {
 
                 // var beenClicked = ()=> categoryCell.style.backgroundColor = govColors.blue;
 
+
                 categoryCell.onclick = function (categoryName, color, categoryCell) {
 
                     return () => {
@@ -846,20 +847,22 @@ function fillCategoryTable() {
                         categoryCell
                             .style.textDecoration = "underline"
 
+                        categoryCell.value = "rgb(227, 110, 150)"
+
+
                         goToCategory(categoryName, color);
                     }
                 
                 }(randomizedCategories[i], color, categoryCell)
 
                 categoryCell.onmouseover = function () {
-                    if(this.style.backgroundColor == color){
-                        this.style.backgroundColor = govColors.blue;
-                    }
+                    this.value = this.style.backgroundColor;
+                    this.style.backgroundColor = govColors.blue;
+
                 }
                 categoryCell.onmouseout = function () {
-                    if(this.style.backgroundColor == govColors.blue){
-                        this.style.backgroundColor = color;
-                    }
+                    console.log(this.value)
+                    this.style.backgroundColor = this.value;
                 }
             }
         }
@@ -881,6 +884,11 @@ function colorBasedOnOrder(categoryName) {
 function setDivImage(div, pathToImage) {
     url =`url("${pathToImage}")`
     div.style.backgroundImage = url;
+
+    div.style.backgroundSize = "contain";
+    div.style.backgroundRepeat = "no-repeat";
+    div.style.backgroundColor = "white";
+    div.style.backgroundPosition = "center center";
 }
 
 
@@ -906,48 +914,52 @@ function fillItemTable(categoryName, color) {
 
     // Loop through the lists and add rows to the table
 
-    for (var m = 0; m < 10; m++) {
+    for (var i = 1; i < 70; i++) {
+        var row = table.insertRow();
 
-        for (var i = 1; i < 7; i++) {
-            var row = table.insertRow();
+        for (var g = 0; g < 7; g++) {
 
-            for (var g = 0; g < 7; g++) {
+            try {
+                var imgNumber = (i * 7 - 6 + g) % (Object.keys(itemPriceRanges[categoryNameTemp]).length-1) +1;
+                // var imgNumberFull = (i * 7 - 6 + g) 
 
-                try {
-                    var imgNumber = (i * 7 - 6 + g) % (Object.keys(itemPriceRanges[categoryNameTemp]).length-1) +1;
-                    var squareUniquePath = pathTemp + i + g;
+                var squareUniquePath = pathTemp + i + g;
 
-                    var pathToImage = pathTemp + getImageName(categoryNameTemp, imgNumber);
-                    var price = itemPriceRanges[categoryNameTemp][getImageExcelName(categoryNameTemp, imgNumber)]["maximum"];
+                var pathToImage = pathTemp + getImageName(categoryNameTemp, imgNumber);
+                var price = itemPriceRanges[categoryNameTemp][getImageExcelName(categoryNameTemp, imgNumber)]["maximum"];
 
-                    var itemCell = row.insertCell();
-                    itemCell.className = "box-style";
-                    itemCell.id = "item-box-" + imgNumber
+                var itemCell = row.insertCell();
+                itemCell.className = "box-style";
+                itemCell.id = "item-box-" + imgNumber
 
-                    itemCell.style.backgroundColor = backgroundColor
+                itemCell.style.backgroundColor = backgroundColor
 
-                    itemCell.onclick = function (pathToImage_arg, squareID_arg, price_arg, itemCell_arg) {
-                        return () => showItem(pathToImage_arg, squareID_arg, price_arg, itemCell_arg);
-                    }(pathToImage, squareUniquePath, price, itemCell);
+                itemCell.onclick = function (pathToImage_arg, squareID_arg, price_arg, itemCell_arg) {
+                    return () => showItem(pathToImage_arg, squareID_arg, price_arg, itemCell_arg);
+                }(pathToImage, squareUniquePath, price, itemCell);
 
-                    if (runtimeVariables.uncovered.includes(squareUniquePath)) {
-                        setDivImage(itemCell, pathToImage)
-                    }
-                    itemCell.onmouseover = function () {
+                if (runtimeVariables.uncovered.includes(squareUniquePath)) {
+                    setDivImage(itemCell, pathToImage)
+                }
+                itemCell.onmouseover = function () {
+                    if(this.style.backgroundColor != "white") { 
                         this.style.backgroundColor = govColors.blue;
                     }
-                    itemCell.onmouseout = function () {
+                }
+                itemCell.onmouseout = function () {
+                    if(this.style.backgroundColor != "white") {
                         this.style.backgroundColor = backgroundColor;
                     }
-
-
                 }
-                catch (err) {
-                    console.log(err)
-                }
+
 
             }
+            catch (err) {
+                console.log(err)
+            }
+
         }
+    
     }
 
     table.style.overflow = "auto";
