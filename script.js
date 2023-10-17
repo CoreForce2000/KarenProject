@@ -651,7 +651,7 @@ var currentSlide = 0;
 
 function switchToSlides() {
     document.getElementById('slideshow').style.display = 'flex'
-    document.getElementById('slideshow').style.backgroundColor = 'black'
+    document.getElementById('slideshow').style.backgroundColor = 'white'
     document.getElementById('next-button').style.display = 'block'
     document.getElementById('slide').style.display = 'flex'
     document.getElementById('shop-content').style.display = 'none'
