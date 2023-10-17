@@ -115,6 +115,7 @@ img {
     background-repeat:no-repeat;
     z-index: 900;
     background-size: cover;
+    background-color:white;
 }
 
 #input-container {
