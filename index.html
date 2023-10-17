@@ -80,28 +80,60 @@
     
 
 
-    <!-- TOPBAR (SHARED) -->
-    <!-- TOPBAR (SHARED) -->
-    <!-- TOPBAR (SHARED) -->
-    <!-- TOPBAR (SHARED) -->
-    <!-- TOPBAR (SHARED) -->
+    <!-- SLIDESHOW -->
+    <!-- SLIDESHOW -->
+    <!-- SLIDESHOW -->
+    <!-- SLIDESHOW -->
+    <!-- SLIDESHOW -->
+    <!-- SLIDESHOW -->
 
     <div id="slideshow">
-        <img src="assets/slides/phase1/Slide1.png" class="slide">
+        <div id="slide">   
+            
+            <div id="input-container">
 
-        <img src="assets/slides/phase1/Slide1.png" class="slide">
-        <img src="assets/slides/phase1/Slide2.png" class="slide">
-        <img src="assets/slides/phase1/Slide3.png" class="slide">
-        <img src="assets/slides/phase1/Slide4.png" class="slide">
-        <img src="assets/slides/Cover.png" class="slide">
-        <img src="assets/slides/phase1/Slide5.png" class="slide">
-        <img src="assets/slides/phase1/Slide6.png" class="slide">
-        <img src="assets/slides/phase1/Slide7.png" class="slide">
-        <img src="assets/slides/phase1/Slide8.png" class="slide">
-        <img id="next-button" src="assets/buttonNext.png" onclick="nextSlide()">
+                <div id="q1_checkboxes">
+                    <input type="radio" id="q1_a6"  name="q1">
+                    <label for="vehicle2"> several times a day </label><br>
+                    
+                    <input type="radio" id="q1_a5"  name="q1">
+                    <label for="vehicle2"> one a day</label><br>
+                    
+                    <input type="radio" id="q1_a4"  name="q1">
+                    <label for="vehicle2"> a few times a week </label><br>
+                    
+                    <input type="radio" id="q1_a3"  name="q1">
+                    <label for="vehicle2"> once a week</label><br>
+                    
+                    <input type="radio" id="q1_a2"  name="q1">
+                    <label for="vehicle2"> once a month or less</label><br>
+                    
+                    <input type="radio" id="q1_a1"  name="q1">
+                    <label for="vehicle2"> very rarely / not at all</label><br>
+        
+                </div>
+        
+                <input class="slide-input" type="text" id="text-input" placeholder="Enter name">
+    
+                <div id="range-slider">
+                    <div id="range-slider-inner">
 
-        <input class="slide-input" type="text" id="text-input" placeholder="Enter name">
-        <input class="slide-input" type="range" min="0" max="100" value="0" id="range-slider">
+                        <span>Not at all</span>
+                        
+                        <div class="vas-container" id="vas">
+                            <div class="line"></div> <!-- Line added inside the container -->
+                        </div>
+
+                        <span>Very much</span>
+                    </div>
+                </div>     
+            </div>
+
+            <img id="next-button" src="assets/buttonNext.png" onclick="nextSlide()">
+        </div>
+
+       
+
 
     </div>
 
@@ -171,6 +203,7 @@
     <div class="overlay"></div>
 
     <script src="script.js"></script>
+    <script src="plugin-html-vas-response/index.js"></script>
 </body>
 
 </html>

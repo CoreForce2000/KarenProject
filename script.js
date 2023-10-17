@@ -586,9 +586,23 @@ console.log(mixedList);
 //////////////////////////////////////////////////////////////////////////////////////// 
 
 
+document.getElementById('vas').addEventListener('click', function(e) {
+    const rect = e.target.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+
+    let indicator = document.querySelector('.indicator');
+    if (!indicator) {
+        indicator = document.createElement('div');
+        indicator.classList.add('indicator');
+        indicator.id ='indicator';
+
+        e.target.appendChild(indicator);
+    }
+    indicator.style.left = `${x}px`;
+});
+
 
 window.onload = function () {
-    switchToSlides()
 
     goToIndex()
     fillCategoryTable()
@@ -629,33 +643,46 @@ function logElementInteraction(event) {
 function submitInput() {
     document.getElementById("input-box").style.display = "none";
     document.getElementById("white-slide").style.display = "none";
-    nextSlide();
+    switchToSlides();
 }
 
 
-var currentSlide = 9;
-var slides = document.querySelectorAll('.slide');
-var nextButton = document.getElementById('next-button');
+var currentSlide = 0;
 
 function switchToSlides() {
-    document.getElementById('slideshow').style.display = 'block'
+    document.getElementById('slideshow').style.display = 'flex'
+    document.getElementById('slideshow').style.backgroundColor = 'black'
+    document.getElementById('next-button').style.display = 'block'
+    document.getElementById('slide').style.display = 'flex'
     document.getElementById('shop-content').style.display = 'none'
+    nextSlide()
 }
 
 
-function showSlide() {
-    // slides[currentSlide].style.display = 'none';
-    slides[currentSlide].style.display = 'block';
-}
+const slideImageOrder = [
+    "assets/slides/phase1/Slide1.png",
+    "assets/slides/phase1/Slide2.png",
+    "assets/slides/phase1/Slide3.png",
+    "assets/slides/phase1/Slide4.png",
+    "assets/slides/Cover.png",
+    "assets/slides/phase1/Slide5.png",
+    "assets/slides/phase1/Slide6.png",
+    "assets/slides/phase1/Slide7.png",
+    "assets/slides/phase1/Slide8.png",
+    "assets/slides/Cover.png",
+    "assets/slides/phase2/Slide1.png"
+]
 
 
 data = {}
 
 function showInput(inputID) {
     document.getElementById(inputID).style.display = "block"
+    document.getElementById("input-container").style.visibility = "visible"
 }
 function hideInput(inputID) {
-    document.getElementById(inputID).style.display = "none";
+    document.getElementById(inputID).style.display = "none";    
+    document.getElementById("input-container").style.visibility = "hidden"
 }
 function saveInput(inputID, varName) {
     data[varName] = document.getElementById(inputID).value;
@@ -664,18 +691,28 @@ function saveInput(inputID, varName) {
 
 
 function nextSlide() {
-    showSlide();
+    console.log(currentSlide)
+    console.log(slideImageOrder[currentSlide])
+    document.getElementById('slide').style.backgroundImage = `url(${slideImageOrder[currentSlide]})`
+
+    let indicator = document.querySelector('.indicator');
+    if (indicator) {
+        indicator.remove()
+    }
+
     currentSlide = currentSlide + 1;
 
     if (currentSlide == 1) {
-        
+        showInput("q1_checkboxes")
     }
 
-    if (currentSlide == 2) {
+    if (currentSlide == 2) {        
+        saveInput("q1_checkboxes", "question1_store")
+        hideInput("q1_checkboxes")
         showInput("text-input")
     }
     if (currentSlide == 3) {
-        saveInput("text-input", "question1_drug")
+        saveInput("text-input", "question2_drug")
         hideInput("text-input")
         showInput("range-slider")
     }
@@ -689,6 +726,10 @@ function nextSlide() {
     if (currentSlide == 10) {
         document.getElementById("white-slide").style.display = "none";
         switchToShop()
+    }
+
+    if (currentSlide == 11) {
+        document.getElementById("next-button").style.display = "none";
     }
 
 
@@ -760,7 +801,7 @@ function startTimer(duration) {
     
             if (--timer < 0) {
                 clearInterval(interval);
-                goToCheckout(false)
+                switchToSlides()
             }
         }
     }, 1000);
@@ -1093,4 +1134,3 @@ function isNumberKey(evt) {
     }
     return true;
 }
-
